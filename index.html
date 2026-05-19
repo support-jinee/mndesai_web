@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M.N. Desai Petrol Pump | Pure Fuel, Pure Commitment</title>
+
+    
+    <meta name="description"
+        content="Welcome to M.N. Desai Petrol Pump (mndesai.in) located in Changodar on Sarkhej-Bavla Road, Ahmedabad, Gujarat. We provide 24/7 high-quality petrol, diesel, CNG, and speed fuel with precise measurements, automated billing, and daily density checks.">
+    <meta name="keywords"
+        content="mndesai petrol pump, mn desai fuel, changodar petrol pump, highway petrol pump gujarat, best cng station ahmedabad, speed petrol, diesel prices gujarat">
+    <meta name="author" content="M.N. Desai">
+
+    
+    <link rel="stylesheet" href="css/style.css?v=4.0">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    
+    <div class="announcement-bar" id="announcement-bar-container">
+        <span id="announcement-text">Loading latest fuel updates...</span>
+    </div>
+
+    
+    <header id="site-header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-gas-pump" id="navbar-pump-icon"></i>
+                <span id="nav-brand-name">M.N. Desai</span><span class="logo-dot" id="secret-lock-trigger">.</span>
+            </a>
+
+            <nav id="site-nav">
+                <ul>
+                    <li><a href="#hero" class="active">Home</a></li>
+                    <li><a href="#prices">Live Prices</a></li>
+                    <li><a href="#calculator">Fuel Calculator</a></li>
+                    <li><a href="#services">Our Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-cta">
+                <a href="#contact" class="btn btn-secondary">Get Directions</a>
+                <a href="tel:+919876543210" class="btn btn-primary" id="header-phone-btn"><i
+                        class="fa-solid fa-phone"></i> Call Now</a>
+            </div>
+
+            <button class="nav-toggle" id="nav-menu-toggle" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    
+    <section class="hero" id="hero">
+        <button class="hero-bg-edit-btn" id="hero-bg-edit-trigger" title="Change Hero Background Image"><i
+                class="fa-solid fa-camera"></i> Change Background</button>
+        <div class="hero-grid">
+            <div class="hero-content">
+                <h1 class="gradient-text" id="hero-title">Pure Fuel,<br>Pure Commitment.</h1>
+                <p id="hero-tagline">Serving the state highway network with integrity and excellence for
+                    over six decades. We guarantee 100% pure fuel with advanced calibrated dispensers.</p>
+
+                <div class="hero-buttons">
+                    <a href="#prices" class="btn btn-primary">Check Live Rates <i
+                            class="fa-solid fa-chevron-right"></i></a>
+                    <a href="#calculator" class="btn btn-secondary">Estimate Trip Cost</a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h3 id="stat-experience">12+</h3>
+                        <p id="stat-experience-label">Years Legacy</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 id="stat-customers">500K+</h3>
+                        <p id="stat-customers-label">Happy Vehicles</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 id="stat-density">Daily</h3>
+                        <p id="stat-density-label">Automated Tests</p>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="hero-preview">
+                <div class="glass-panel fuel-quick-card">
+                    <div class="quick-card-header">
+                        <h3>Quick Rates</h3>
+                        <span class="badge-live">Live Rates</span>
+                    </div>
+                    <div class="quick-fuel-list" id="quick-rates-container">
+                        
+                        <div class="quick-fuel-item petrol">
+                            <div class="fuel-meta">
+                                <span class="name">Petrol (Unleaded)</span>
+                                <span class="type">Unleaded</span>
+                            </div>
+                            <div class="fuel-rate">
+                                <span class="price">₹104.25</span>
+                                <span class="unit">/ Ltr</span>
+                            </div>
+                        </div>
+                        <div class="quick-fuel-item diesel">
+                            <div class="fuel-meta">
+                                <span class="name">Diesel</span>
+                                <span class="type">High Speed Diesel</span>
+                            </div>
+                            <div class="fuel-rate">
+                                <span class="price">₹92.80</span>
+                                <span class="unit">/ Ltr</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="section" id="prices">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle" id="prices-subtitle">Daily Fuel Rates</span>
+                <h2 id="prices-title">Current Fuel Prices in Changodar</h2>
+                <p id="prices-desc">Prices are updated daily at 6:00 AM as per government guidelines. Quality and
+                    density checks are recorded hourly.</p>
+            </div>
+
+            <div class="price-grid" id="prices-grid-container">
+                
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="section" id="calculator"
+        style="background: rgba(255,255,255,0.01); border-top: 1px solid rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.03);">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle" id="calc-subtitle">Fuel Calculator</span>
+                <h2 id="calc-title">Estimate Your Journey Expenses</h2>
+                <p id="calc-desc">Enter your travel parameters below to calculate precise fuel requirement and projected
+                    trip costs instantly based on our live rates.</p>
+            </div>
+
+            <div class="glass-panel calc-container">
+                <div class="calc-grid">
+                    <div class="calc-inputs">
+                        <div class="input-group">
+                            <label for="calc-fuel-type">Select Fuel Type</label>
+                            <select id="calc-fuel-type">
+                                
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="calc-distance">Planned Trip Distance (Kilometers)</label>
+                            <input type="number" id="calc-distance" placeholder="e.g. 150" min="1" value="100">
+                        </div>
+                        <div class="input-group">
+                            <label for="calc-mileage">Vehicle Mileage (Km per Liter / Kg)</label>
+                            <input type="number" id="calc-mileage" placeholder="e.g. 15" min="0.1" step="0.1"
+                                value="15">
+                        </div>
+                    </div>
+
+                    <div class="calc-outputs">
+                        <span class="result-label">Estimated Trip Cost</span>
+                        <div class="result-val" id="calc-result-price">₹0.00</div>
+
+                        <div class="calc-details">
+                            <div class="calc-detail-row">
+                                <span>Required Fuel Quantity</span>
+                                <span id="calc-result-qty">0.00 Ltr</span>
+                            </div>
+                            <div class="calc-detail-row">
+                                <span>Active Rate Applied</span>
+                                <span id="calc-result-rate">₹0.00 / Ltr</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="section" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle" id="services-subtitle">Why Choose Us</span>
+                <h2 id="services-title">Premium Station Amenities</h2>
+                <p id="services-desc">We offer more than just premium fuels. Experience a comprehensive range of quality
+                    convenience services designed to refresh both you and your vehicle.</p>
+            </div>
+
+            <div class="services-grid" id="services-grid-container">
+                
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="section" id="trust" style="padding-bottom: 50px;">
+        <div class="container">
+            <div class="glass-panel quality-banner">
+                <div class="quality-grid">
+                    <div class="quality-content">
+                        <span class="subtitle" id="trust-subtitle" style="color: var(--primary);">Trust &
+                            Integrity</span>
+                        <h2 id="qa-title">100% Quantity & Quality Assurance</h2>
+                        <p id="qa-desc">At M.N. Desai, honesty is our cornerstone. We carry out daily calibration audits
+                            to ensure exact dispensing volume and maintain digital records of density tests.</p>
+
+                        <div class="quality-bullets">
+                            <div class="quality-bullet">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <span><strong id="qa-bullet-title-1">Hourly Density Display:</strong> <span
+                                        id="qa-bullet-desc-1">Density is automatically updated on our digital screens at
+                                        every island nozzle.</span></span>
+                            </div>
+                            <div class="quality-bullet">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <span><strong id="qa-bullet-title-2">Manual Filter Check:</strong> <span
+                                        id="qa-bullet-desc-2">Customers can request a manual filter paper check to
+                                        inspect fuel purity at any time.</span></span>
+                            </div>
+                            <div class="quality-bullet">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <span><strong id="qa-bullet-title-3">5-Liter Calibration Can:</strong> <span
+                                        id="qa-bullet-desc-3">Verify absolute quantity using our government-stamped
+                                        measure weights.</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quality-visual">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <h4>Certified Density Check</h4>
+                        <p id="qa-density-note">Daily automated density tests and manual filter paper check options are
+                            available to every customer on request.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="section" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-visual">
+                    <div class="about-img-wrap">
+                        <img src="images/01.jpeg" alt="M.N. Desai Fueling Station" id="about-image">
+                    </div>
+                    <div class="glass-panel experience-card">
+                        <div class="num" id="about-years-badge">12</div>
+                        <div class="lbl" id="about-years-label">Years Service</div>
+                    </div>
+                </div>
+
+                <div class="about-content">
+                    <span class="subtitle" id="about-subtitle">Our Legacy</span>
+                    <h2 id="about-title">About M.N. Desai Petrol Pump</h2>
+                    <p id="about-description">M N Desai company was established in 1961. During that time one can hardly
+                        find a petrol pump on road. M N Desai was dealing in Crude Oil during 1960s. M N Desai was the
+                        Petrol Pump between Ahmedabad Bagodra Road during 1970s and 1980s.</p>
+
+                    <div class="about-features">
+                        <div class="about-feat">
+                            <div class="about-feat-icon"><i class="fa-solid fa-receipt"></i></div>
+                            <div>
+                                <h4 id="about-feat-title-1">100% e-Billing</h4>
+                                <p id="about-feat-desc-1">Get digital receipts directly via SMS.</p>
+                            </div>
+                        </div>
+                        <div class="about-feat">
+                            <div class="about-feat-icon"><i class="fa-solid fa-user-shield"></i></div>
+                            <div>
+                                <h4 id="about-feat-title-2">Trained Staff</h4>
+                                <p id="about-feat-desc-2">Courteous staff serving safely and rapidly.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="section" id="testimonials"
+        style="background: rgba(255,255,255,0.01); border-top: 1px solid rgba(255,255,255,0.03);">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle" id="testimonials-subtitle">Client Reviews</span>
+                <h2 id="testimonials-title">What Drivers Say About Us</h2>
+                <p id="testimonials-desc">Customer satisfaction is our ultimate reward. Read reviews from everyday
+                    highway travelers and fleet owners.</p>
+            </div>
+
+            <div class="testimonials-grid" id="testimonials-container">
+                
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle" id="contact-subtitle">Locate Us</span>
+                <h2 id="contact-title">Get in Touch & Reach Our Station</h2>
+                <p id="contact-desc">Have questions about bulk fuel deals or customized corporate cards? Reach out
+                    directly or stop by 24 hours a day.</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info-cards">
+                    <div class="glass-panel contact-panel-card">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <h4>Our Address</h4>
+                            <p id="contact-address">IndianOil Petrol Pump (M.N. Desai), Sarkhej-Bavla Road, Changodar,
+                                Ahmedabad, Gujarat - 382213</p>
+                        </div>
+                    </div>
+                    <div class="glass-panel contact-panel-card">
+                        <i class="fa-solid fa-phone-volume"></i>
+                        <div>
+                            <h4>Phone Number</h4>
+                            <p><a href="tel:+919876543210" id="contact-phone">+91 98765 43210</a></p>
+                            <p style="font-size:0.8rem; color:var(--text-muted);"></p>
+                        </div>
+                    </div>
+                    <div class="glass-panel contact-panel-card">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div>
+                            <h4>Email Address</h4>
+                            <p><a href="mailto:contact@mndesai.in" id="contact-email">contact@mndesai.in</a></p>
+                        </div>
+                    </div>
+                    <div class="glass-panel contact-panel-card">
+                        <i class="fa-solid fa-clock"></i>
+                        <div>
+                            <h4>Operating Hours</h4>
+                            <p id="contact-hours">Open 24 Hours, 7 Days a week</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="map-wrapper">
+                    
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.630043883011!2d72.4411132!3d22.9208035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e91b2bcdae9b9%3A0xb13c79120ed549c4!2sIndianOil!5e0!3m2!1sen!2sin!4v1715830000000!5m2!1sen!2sin"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        id="contact-map-iframe"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <footer>
+        <div class="container">
+            <div class="footer-nav">
+                <a href="#hero">Home</a>
+                <a href="#prices">Rates</a>
+                <a href="#calculator">Calculator</a>
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+            </div>
+            <p>&copy; <span id="footer-year">2026</span> <strong id="footer-station-name">M.N. Desai Petrol
+                    Pump</strong>. All Rights Reserved. <span id="footer-crafted-text">Crafted for premium highway
+                    servicing.</span></p>
+        </div>
+    </footer>
+
+    
+    <div class="secret-login-modal" id="secret-login-modal-overlay">
+        <div class="glass-panel login-card" style="position: relative;">
+            <button id="close-secret-login"
+                style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1.2rem;"><i
+                    class="fa-solid fa-xmark"></i></button>
+            <div class="login-header">
+                <i class="fa-solid fa-user-lock"></i>
+                <h2>Admin Mode Activation</h2>
+                <p>Enter administrative credentials to enable live inline text and price editing directly on this page.
+                </p>
+            </div>
+
+            <div class="login-error" id="secret-login-error"
+                style="display: none; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #ef4444; padding: 10px; border-radius: var(--border-radius-sm); font-size: 0.85rem; margin-bottom: 20px;">
+                <i class="fa-solid fa-circle-exclamation"></i> Invalid credentials.
+            </div>
+
+            <div class="login-form">
+                <div class="input-group" style="text-align: left;">
+                    <label for="secret-username">Username</label>
+                    <input type="text" id="secret-username" placeholder="Enter user name" required>
+                </div>
+
+                <div class="input-group" style="text-align: left; margin-top: 15px;">
+                    <label for="secret-password">Password</label>
+                    <input type="password" id="secret-password" placeholder="••••••••" required>
+                </div>
+
+                <button type="button" class="btn btn-primary" id="secret-login-submit"
+                    style="width: 100%; margin-top: 25px;">
+                    <i class="fa-solid fa-key"></i> Enable Edit Mode
+                </button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="secret-login-modal" id="wysiwyg-image-modal-overlay">
+        <div class="glass-panel login-card" style="position: relative; max-width: 540px; width: 100%;">
+            <button id="close-image-modal"
+                style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1.2rem;"><i
+                    class="fa-solid fa-xmark"></i></button>
+            <div class="login-header" style="margin-bottom: 20px;">
+                <i class="fa-solid fa-image" style="color: var(--primary); font-size: 2.5rem; margin-bottom: 12px;"></i>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.8rem; margin-bottom: 8px;">Update Section
+                    Image</h2>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">Select an existing image
+                    from the <code>images/</code> folder gallery, or upload/register a new image.</p>
+            </div>
+
+            <div class="image-modal-body" style="text-align: left; display: flex; flex-direction: column; gap: 15px;">
+                
+                <div class="input-group">
+                    <label
+                        style="font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+                        <i class="fa-solid fa-images"></i> Available Images in Folder
+                    </label>
+                    <div class="image-gallery-grid" id="modal-image-gallery-container">
+                        
+                    </div>
+                </div>
+
+                
+                <div class="input-group">
+                    <label
+                        style="font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> Register / Upload New Image
+                    </label>
+                    <div class="file-upload-drag-area" id="modal-image-drag-area"
+                        style="border: 2px dashed rgba(245, 158, 11, 0.3); padding: 16px; border-radius: var(--border-radius-md); text-align: center; cursor: pointer; background: rgba(255,255,255,0.01); transition: var(--transition-smooth);">
+                        <i class="fa-solid fa-images"
+                            style="font-size: 1.5rem; color: var(--text-muted); margin-bottom: 6px;"></i>
+                        <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0;">Drag & drop new image
+                            here or <span style="color: var(--primary); font-weight: 600;">Browse</span></p>
+                        <input type="file" id="modal-image-file-picker" accept="image/*" style="display: none;">
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button type="button" class="btn btn-secondary" id="cancel-image-submit"
+                    style="flex: 1; padding: 10px; font-size: 0.85rem;">Cancel</button>
+                <button type="button" class="btn btn-primary" id="apply-image-submit"
+                    style="flex: 1; padding: 10px; font-size: 0.85rem;"><i class="fa-solid fa-circle-check"></i> Apply
+                    Selection</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="secret-login-modal" id="wysiwyg-icon-modal-overlay">
+        <div class="glass-panel login-card" style="position: relative; max-width: 520px; width: 100%;">
+            <button id="close-icon-modal"
+                style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1.2rem;"><i
+                    class="fa-solid fa-xmark"></i></button>
+            <div class="login-header" style="margin-bottom: 20px;">
+                <i class="fa-solid fa-icons" style="color: var(--primary); font-size: 2.5rem; margin-bottom: 12px;"></i>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.8rem; margin-bottom: 8px;">Select Curated
+                    Icon</h2>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">Pick a stunning and
+                    modern icon style to customize this section's branding.</p>
+            </div>
+            <div class="icon-modal-body" style="text-align: left;">
+                <div class="icon-picker-grid" id="modal-icon-picker-container">
+                    
+                </div>
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 25px;">
+                <button type="button" class="btn btn-secondary" id="cancel-icon-submit"
+                    style="flex: 1; padding: 10px; font-size: 0.85rem;">Cancel</button>
+                <button type="button" class="btn btn-primary" id="apply-icon-submit"
+                    style="flex: 1; padding: 10px; font-size: 0.85rem;"><i class="fa-solid fa-circle-check"></i> Apply
+                    Icon</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="secret-login-modal" id="wysiwyg-sections-modal-overlay">
+        <div class="glass-panel login-card" style="position: relative; max-width: 520px; width: 100%;">
+            <button id="close-sections-modal"
+                style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1.2rem;"><i
+                    class="fa-solid fa-xmark"></i></button>
+            <div class="login-header" style="margin-bottom: 20px;">
+                <i class="fa-solid fa-eye-slash"
+                    style="color: var(--primary); font-size: 2.5rem; margin-bottom: 12px;"></i>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.8rem; margin-bottom: 8px;">Manage Page
+                    Sections</h2>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">Toggle visibility
+                    switches to show or hide entire layout blocks from highway travelers.</p>
+            </div>
+            <div class="sections-modal-body" style="text-align: left;">
+                <div class="sections-list-container" id="modal-sections-list-container">
+                    
+                </div>
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 25px;">
+                <button type="button" class="btn btn-secondary" id="cancel-sections-submit"
+                    style="flex: 1; padding: 10px; font-size: 0.85rem;">Cancel</button>
+                <button type="button" class="btn btn-primary" id="apply-sections-submit"
+                    style="flex: 1; padding: 10px; font-size: 0.85rem;"><i class="fa-solid fa-circle-check"></i> Apply
+                    Changes</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="wysiwyg-floating-control-dock" id="wysiwyg-floating-toolbar">
+        <div class="dock-branding">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            M.N. Desai <span id="file-sync-status"
+                style="margin-left: 12px; font-size: 0.72rem; color: #ff6b6b; padding: 4px 8px; border-radius: 4px; background: rgba(255, 107, 107, 0.1); border: 1px dashed rgba(255, 107, 107, 0.3); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-weight: 500;"
+                title="Click to link directly to your local data.json file on your computer"><i
+                    class="fa-solid fa-circle" style="font-size: 0.6rem;"></i> Link local data.json</span>
+        </div>
+        <div class="dock-buttons">
+            <button class="btn btn-primary" id="wysiwyg-save-btn" style="padding: 10px 20px; font-size: 0.85rem;">
+                <i class="fa-solid fa-floppy-disk"></i> Save Draft
+            </button>
+            <button class="btn btn-secondary" id="toolbar-sections-btn" style="padding: 10px 18px; font-size: 0.85rem;">
+                <i class="fa-solid fa-layer-group"></i> Manage Sections
+            </button>
+            <button class="btn btn-secondary" id="wysiwyg-export-btn"
+                style="padding: 10px 18px; font-size: 0.85rem; border-color: rgba(6, 182, 212, 0.4); color: var(--secondary);">
+                <i class="fa-solid fa-file-arrow-down"></i> Export data.json
+            </button>
+            <button class="btn btn-secondary" id="wysiwyg-import-btn" style="padding: 10px 18px; font-size: 0.85rem;">
+                <i class="fa-solid fa-file-arrow-up"></i> Import JSON
+            </button>
+            <button class="btn btn-secondary" id="wysiwyg-reset-btn" style="padding: 10px 14px; font-size: 0.85rem;"
+                title="Revert Changes">
+                <i class="fa-solid fa-rotate-left"></i>
+            </button>
+            <button class="btn btn-secondary" id="wysiwyg-exit-btn"
+                style="padding: 10px 18px; font-size: 0.85rem; border-color: rgba(239, 68, 68, 0.3); color: #ef4444;">
+                <i class="fa-solid fa-door-closed"></i> Exit Editor
+            </button>
+        </div>
+    </div>
+
+    
+    <div class="wysiwyg-drag-import-overlay" id="wysiwyg-drag-overlay">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+        <h2 style="font-family: 'Outfit', sans-serif; font-size: 2rem; margin-bottom: 10px;">Import data.json
+            Configuration</h2>
+        <p style="color: var(--text-secondary); font-size: 1.1rem;">Drop your custom configuration file anywhere on the
+            screen to restore settings.</p>
+        <input type="file" id="wysiwyg-file-picker" accept=".json" style="display: none;">
+    </div>
+
+    
+    <div class="toast-msg success" id="wysiwyg-toast-box">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="wysiwyg-toast-text">Changes saved locally! Real-time sync active.</span>
+    </div>
+
+    
+    <script src="js/app.js?v=4.1"></script>
+</body>
+
+</html>
