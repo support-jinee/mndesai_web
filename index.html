@@ -4,34 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>M.N. Desai Petrol Pump | Pure Fuel, Pure Commitment</title>
 
-    
+
     <meta name="description"
         content="Welcome to M.N. Desai Petrol Pump (mndesai.in) located in Changodar on Sarkhej-Bavla Road, Ahmedabad, Gujarat. We provide 24/7 high-quality petrol, diesel, CNG, and speed fuel with precise measurements, automated billing, and daily density checks.">
     <meta name="keywords"
         content="mndesai petrol pump, mn desai fuel, changodar petrol pump, highway petrol pump gujarat, best cng station ahmedabad, speed petrol, diesel prices gujarat">
     <meta name="author" content="M.N. Desai">
 
-    
-    <link rel="stylesheet" href="css/style.css?v=4.0">
 
-    
+    <link rel="stylesheet" href="css/style.css?v=5.9">
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
 
-    
+
     <div class="announcement-bar" id="announcement-bar-container">
         <span id="announcement-text">Loading latest fuel updates...</span>
     </div>
 
-    
+
     <header id="site-header">
         <div class="nav-container">
-            <a href="#" class="logo">
-                <i class="fa-solid fa-gas-pump" id="navbar-pump-icon"></i>
+            <a href="#" class="logo" style="display: flex; align-items: center; gap: 8px;">
+                <img src="images/logo.png" id="navbar-logo-img" class="navbar-logo-image" alt="M.N. Desai Logo"
+                    style="height: 52px; width: auto; object-fit: contain; border-radius: 6px; transition: var(--transition-smooth); margin-top: -6px; margin-bottom: -6px;">
                 <span id="nav-brand-name">M.N. Desai</span><span class="logo-dot" id="secret-lock-trigger">.</span>
             </a>
 
@@ -49,19 +53,19 @@
             <div class="nav-cta">
                 <a href="#contact" class="btn btn-secondary">Get Directions</a>
                 <a href="tel:+919876543210" class="btn btn-primary" id="header-phone-btn"><i
-                        class="fa-solid fa-phone"></i> Call Now</a>
+                        class="fa-solid fa-phone" data-icon-id="static-icon-1"></i> Call Now</a>
             </div>
 
             <button class="nav-toggle" id="nav-menu-toggle" aria-label="Toggle Menu">
-                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-bars" data-icon-id="static-icon-2"></i>
             </button>
         </div>
     </header>
 
-    
+
     <section class="hero" id="hero">
         <button class="hero-bg-edit-btn" id="hero-bg-edit-trigger" title="Change Hero Background Image"><i
-                class="fa-solid fa-camera"></i> Change Background</button>
+                class="fa-solid fa-camera" data-icon-id="static-icon-3"></i> Change Background</button>
         <div class="hero-grid">
             <div class="hero-content">
                 <h1 class="gradient-text" id="hero-title">Pure Fuel,<br>Pure Commitment.</h1>
@@ -69,9 +73,9 @@
                     over six decades. We guarantee 100% pure fuel with advanced calibrated dispensers.</p>
 
                 <div class="hero-buttons">
-                    <a href="#prices" class="btn btn-primary">Check Live Rates <i
-                            class="fa-solid fa-chevron-right"></i></a>
-                    <a href="#calculator" class="btn btn-secondary">Estimate Trip Cost</a>
+                    <a href="#prices" class="btn btn-primary" id="hero-btn-prices">Check Live Rates <i
+                            class="fa-solid fa-chevron-right" data-icon-id="static-icon-4"></i></a>
+                    <a href="#calculator" class="btn btn-secondary" id="hero-btn-calc">Estimate Trip Cost</a>
                 </div>
 
                 <div class="hero-stats">
@@ -90,7 +94,7 @@
                 </div>
             </div>
 
-            
+
             <div class="hero-preview">
                 <div class="glass-panel fuel-quick-card">
                     <div class="quick-card-header">
@@ -98,7 +102,7 @@
                         <span class="badge-live">Live Rates</span>
                     </div>
                     <div class="quick-fuel-list" id="quick-rates-container">
-                        
+
                         <div class="quick-fuel-item petrol">
                             <div class="fuel-meta">
                                 <span class="name">Petrol (Unleaded)</span>
@@ -125,7 +129,7 @@
         </div>
     </section>
 
-    
+
     <section class="section" id="prices">
         <div class="container">
             <div class="section-header">
@@ -136,12 +140,12 @@
             </div>
 
             <div class="price-grid" id="prices-grid-container">
-                
+
             </div>
         </div>
     </section>
 
-    
+
     <section class="section" id="calculator"
         style="background: rgba(255,255,255,0.01); border-top: 1px solid rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.03);">
         <div class="container">
@@ -158,7 +162,7 @@
                         <div class="input-group">
                             <label for="calc-fuel-type">Select Fuel Type</label>
                             <select id="calc-fuel-type">
-                                
+
                             </select>
                         </div>
                         <div class="input-group">
@@ -192,7 +196,7 @@
         </div>
     </section>
 
-    
+
     <section class="section" id="services">
         <div class="container">
             <div class="section-header">
@@ -203,12 +207,12 @@
             </div>
 
             <div class="services-grid" id="services-grid-container">
-                
+
             </div>
         </div>
     </section>
 
-    
+
     <section class="section" id="trust" style="padding-bottom: 50px;">
         <div class="container">
             <div class="glass-panel quality-banner">
@@ -222,19 +226,19 @@
 
                         <div class="quality-bullets">
                             <div class="quality-bullet">
-                                <i class="fa-solid fa-circle-check"></i>
+                                <i class="fa-solid fa-circle-check" data-icon-id="static-icon-5"></i>
                                 <span><strong id="qa-bullet-title-1">Hourly Density Display:</strong> <span
                                         id="qa-bullet-desc-1">Density is automatically updated on our digital screens at
                                         every island nozzle.</span></span>
                             </div>
                             <div class="quality-bullet">
-                                <i class="fa-solid fa-circle-check"></i>
+                                <i class="fa-solid fa-circle-check" data-icon-id="static-icon-6"></i>
                                 <span><strong id="qa-bullet-title-2">Manual Filter Check:</strong> <span
                                         id="qa-bullet-desc-2">Customers can request a manual filter paper check to
                                         inspect fuel purity at any time.</span></span>
                             </div>
                             <div class="quality-bullet">
-                                <i class="fa-solid fa-circle-check"></i>
+                                <i class="fa-solid fa-circle-check" data-icon-id="static-icon-7"></i>
                                 <span><strong id="qa-bullet-title-3">5-Liter Calibration Can:</strong> <span
                                         id="qa-bullet-desc-3">Verify absolute quantity using our government-stamped
                                         measure weights.</span></span>
@@ -243,7 +247,7 @@
                     </div>
 
                     <div class="quality-visual">
-                        <i class="fa-solid fa-shield-halved"></i>
+                        <i class="fa-solid fa-shield-halved" data-icon-id="static-icon-8"></i>
                         <h4>Certified Density Check</h4>
                         <p id="qa-density-note">Daily automated density tests and manual filter paper check options are
                             available to every customer on request.</p>
@@ -253,49 +257,53 @@
         </div>
     </section>
 
-    
+
     <section class="section" id="about">
         <div class="container">
-            <div class="about-grid">
-                <div class="about-visual">
-                    <div class="about-img-wrap">
-                        <img src="images/01.jpeg" alt="M.N. Desai Fueling Station" id="about-image">
-                    </div>
-                    <div class="glass-panel experience-card">
-                        <div class="num" id="about-years-badge">12</div>
-                        <div class="lbl" id="about-years-label">Years Service</div>
-                    </div>
-                </div>
+            <div style="text-align: center; max-width: 800px; margin: 0 auto 50px;">
+                <span class="subtitle" id="about-subtitle">Our Legacy</span>
+                <h2 id="about-title" style="margin-bottom: 20px;">About M.N. Desai Petrol Pump</h2>
+                <p id="about-description" style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 30px;">M
+                    N Desai company was established in 1961. During that time one can hardly find a petrol pump on road.
+                    M N Desai was dealing in Crude Oil during 1960s. M N Desai was the Petrol Pump between Ahmedabad
+                    Bagodra Road during 1970s and 1980s.</p>
 
-                <div class="about-content">
-                    <span class="subtitle" id="about-subtitle">Our Legacy</span>
-                    <h2 id="about-title">About M.N. Desai Petrol Pump</h2>
-                    <p id="about-description">M N Desai company was established in 1961. During that time one can hardly
-                        find a petrol pump on road. M N Desai was dealing in Crude Oil during 1960s. M N Desai was the
-                        Petrol Pump between Ahmedabad Bagodra Road during 1970s and 1980s.</p>
-
-                    <div class="about-features">
-                        <div class="about-feat">
-                            <div class="about-feat-icon"><i class="fa-solid fa-receipt"></i></div>
-                            <div>
-                                <h4 id="about-feat-title-1">100% e-Billing</h4>
-                                <p id="about-feat-desc-1">Get digital receipts directly via SMS.</p>
-                            </div>
+                <div class="about-features" style="display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;">
+                    <div class="about-feat"
+                        style="text-align: left; background: var(--bg-card-glass); padding: 15px 25px; border-radius: 16px; border: 1px solid var(--border-glass); display: flex; gap: 15px; align-items: center;">
+                        <div class="about-feat-icon" style="color: var(--primary); font-size: 1.5rem;"><i
+                                class="fa-solid fa-receipt" data-icon-id="static-icon-9"></i></div>
+                        <div>
+                            <h4 id="about-feat-title-1"
+                                style="font-family: 'Outfit', sans-serif; font-size: 1.05rem; font-weight: 600;">100%
+                                e-Billing</h4>
+                            <p id="about-feat-desc-1" style="color: var(--text-muted); font-size: 0.85rem;">Get digital
+                                receipts directly via SMS.</p>
                         </div>
-                        <div class="about-feat">
-                            <div class="about-feat-icon"><i class="fa-solid fa-user-shield"></i></div>
-                            <div>
-                                <h4 id="about-feat-title-2">Trained Staff</h4>
-                                <p id="about-feat-desc-2">Courteous staff serving safely and rapidly.</p>
-                            </div>
+                    </div>
+                    <div class="about-feat"
+                        style="text-align: left; background: var(--bg-card-glass); padding: 15px 25px; border-radius: 16px; border: 1px solid var(--border-glass); display: flex; gap: 15px; align-items: center;">
+                        <div class="about-feat-icon" style="color: var(--primary); font-size: 1.5rem;"><i
+                                class="fa-solid fa-user-shield" data-icon-id="static-icon-10"></i></div>
+                        <div>
+                            <h4 id="about-feat-title-2"
+                                style="font-family: 'Outfit', sans-serif; font-size: 1.05rem; font-weight: 600;">Trained
+                                Staff</h4>
+                            <p id="about-feat-desc-2" style="color: var(--text-muted); font-size: 0.85rem;">Courteous
+                                staff serving safely and rapidly.</p>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Dynamic alternating timeline of legacy items -->
+            <div id="about-timeline-container" style="width: 100%;">
+                <!-- Legacy timeline rows will render here dynamically -->
+            </div>
         </div>
     </section>
 
-    
+
     <section class="section" id="testimonials"
         style="background: rgba(255,255,255,0.01); border-top: 1px solid rgba(255,255,255,0.03);">
         <div class="container">
@@ -307,12 +315,12 @@
             </div>
 
             <div class="testimonials-grid" id="testimonials-container">
-                
+
             </div>
         </div>
     </section>
 
-    
+
     <section class="section" id="contact">
         <div class="container">
             <div class="section-header">
@@ -325,7 +333,7 @@
             <div class="contact-grid">
                 <div class="contact-info-cards">
                     <div class="glass-panel contact-panel-card">
-                        <i class="fa-solid fa-location-dot"></i>
+                        <i class="fa-solid fa-location-dot" data-icon-id="static-icon-11"></i>
                         <div>
                             <h4>Our Address</h4>
                             <p id="contact-address">IndianOil Petrol Pump (M.N. Desai), Sarkhej-Bavla Road, Changodar,
@@ -333,7 +341,7 @@
                         </div>
                     </div>
                     <div class="glass-panel contact-panel-card">
-                        <i class="fa-solid fa-phone-volume"></i>
+                        <i class="fa-solid fa-phone-volume" data-icon-id="static-icon-12"></i>
                         <div>
                             <h4>Phone Number</h4>
                             <p><a href="tel:+919876543210" id="contact-phone">+91 98765 43210</a></p>
@@ -341,14 +349,14 @@
                         </div>
                     </div>
                     <div class="glass-panel contact-panel-card">
-                        <i class="fa-solid fa-envelope"></i>
+                        <i class="fa-solid fa-envelope" data-icon-id="static-icon-13"></i>
                         <div>
                             <h4>Email Address</h4>
                             <p><a href="mailto:contact@mndesai.in" id="contact-email">contact@mndesai.in</a></p>
                         </div>
                     </div>
                     <div class="glass-panel contact-panel-card">
-                        <i class="fa-solid fa-clock"></i>
+                        <i class="fa-solid fa-clock" data-icon-id="static-icon-14"></i>
                         <div>
                             <h4>Operating Hours</h4>
                             <p id="contact-hours">Open 24 Hours, 7 Days a week</p>
@@ -357,7 +365,7 @@
                 </div>
 
                 <div class="map-wrapper">
-                    
+
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.630043883011!2d72.4411132!3d22.9208035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e91b2bcdae9b9%3A0xb13c79120ed549c4!2sIndianOil!5e0!3m2!1sen!2sin!4v1715830000000!5m2!1sen!2sin"
                         allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
@@ -367,7 +375,7 @@
         </div>
     </section>
 
-    
+
     <footer>
         <div class="container">
             <div class="footer-nav">
@@ -383,14 +391,14 @@
         </div>
     </footer>
 
-    
+
     <div class="secret-login-modal" id="secret-login-modal-overlay">
         <div class="glass-panel login-card" style="position: relative;">
             <button id="close-secret-login"
                 style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1.2rem;"><i
-                    class="fa-solid fa-xmark"></i></button>
+                    class="fa-solid fa-xmark" data-icon-id="static-icon-15"></i></button>
             <div class="login-header">
-                <i class="fa-solid fa-user-lock"></i>
+                <i class="fa-solid fa-user-lock" data-icon-id="static-icon-16"></i>
                 <h2>Admin Mode Activation</h2>
                 <p>Enter administrative credentials to enable live inline text and price editing directly on this page.
                 </p>
@@ -398,7 +406,7 @@
 
             <div class="login-error" id="secret-login-error"
                 style="display: none; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #ef4444; padding: 10px; border-radius: var(--border-radius-sm); font-size: 0.85rem; margin-bottom: 20px;">
-                <i class="fa-solid fa-circle-exclamation"></i> Invalid credentials.
+                <i class="fa-solid fa-circle-exclamation" data-icon-id="static-icon-17"></i> Invalid credentials.
             </div>
 
             <div class="login-form">
@@ -414,51 +422,112 @@
 
                 <button type="button" class="btn btn-primary" id="secret-login-submit"
                     style="width: 100%; margin-top: 25px;">
-                    <i class="fa-solid fa-key"></i> Enable Edit Mode
+                    <i class="fa-solid fa-key" data-icon-id="static-icon-18"></i> Enable Edit Mode
                 </button>
             </div>
         </div>
     </div>
 
-    
+
     <div class="secret-login-modal" id="wysiwyg-image-modal-overlay">
         <div class="glass-panel login-card" style="position: relative; max-width: 540px; width: 100%;">
             <button id="close-image-modal"
                 style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1.2rem;"><i
-                    class="fa-solid fa-xmark"></i></button>
+                    class="fa-solid fa-xmark" data-icon-id="static-icon-19"></i></button>
             <div class="login-header" style="margin-bottom: 20px;">
-                <i class="fa-solid fa-image" style="color: var(--primary); font-size: 2.5rem; margin-bottom: 12px;"></i>
-                <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.8rem; margin-bottom: 8px;">Update Section
-                    Image</h2>
-                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">Select an existing image
-                    from the <code>images/</code> folder gallery, or upload/register a new image.</p>
+                <i class="fa-solid fa-photo-film" data-icon-id="static-icon-20" id="media-modal-icon"
+                    style="color: var(--primary); font-size: 2.5rem; margin-bottom: 12px;"></i>
+                <h2 id="media-modal-title"
+                    style="font-family: 'Outfit', sans-serif; font-size: 1.8rem; margin-bottom: 8px;">Update Section
+                    Media</h2>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">Select or upload an
+                    image, or configure video paths and YouTube links for this section.</p>
+            </div>
+
+            <!-- Media Type Tabs -->
+            <div class="media-type-tabs"
+                style="display: flex; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; margin-bottom: 15px; gap: 15px; justify-content: center;">
+                <button type="button" class="media-tab active" id="media-tab-image"
+                    style="background: none; border: none; color: var(--primary); font-weight: 600; cursor: pointer; padding: 5px 10px; border-bottom: 2px solid var(--primary); font-family: inherit; font-size: 0.9rem;">
+                    <i class="fa-solid fa-image" data-icon-id="static-icon-21"></i> Image
+                </button>
+                <button type="button" class="media-tab" id="media-tab-video"
+                    style="background: none; border: none; color: var(--text-secondary); font-weight: 600; cursor: pointer; padding: 5px 10px; font-family: inherit; font-size: 0.9rem;">
+                    <i class="fa-solid fa-video" data-icon-id="static-icon-22"></i> Video
+                </button>
             </div>
 
             <div class="image-modal-body" style="text-align: left; display: flex; flex-direction: column; gap: 15px;">
-                
-                <div class="input-group">
-                    <label
-                        style="font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
-                        <i class="fa-solid fa-images"></i> Available Images in Folder
-                    </label>
-                    <div class="image-gallery-grid" id="modal-image-gallery-container">
-                        
+
+                <!-- Image Mode Content -->
+                <div id="media-image-inputs-container"
+                    style="display: flex; flex-direction: column; gap: 15px; width: 100%;">
+                    <div class="input-group">
+                        <label
+                            style="font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+                            <i class="fa-solid fa-images" data-icon-id="static-icon-23"></i> Available Images in Folder
+                        </label>
+                        <div class="image-gallery-grid" id="modal-image-gallery-container">
+
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label
+                            style="font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+                            <i class="fa-solid fa-cloud-arrow-up" data-icon-id="static-icon-24"></i> Register / Upload New Image
+                        </label>
+                        <div class="file-upload-drag-area" id="modal-image-drag-area"
+                            style="border: 2px dashed rgba(245, 158, 11, 0.3); padding: 16px; border-radius: var(--border-radius-md); text-align: center; cursor: pointer; background: rgba(255,255,255,0.01); transition: var(--transition-smooth);">
+                            <i class="fa-solid fa-images" data-icon-id="static-icon-25"
+                                style="font-size: 1.5rem; color: var(--text-muted); margin-bottom: 6px;"></i>
+                            <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0;">Drag & drop new
+                                image here or <span style="color: var(--primary); font-weight: 600;">Browse</span></p>
+                            <input type="file" id="modal-image-file-picker" accept="image/*" style="display: none;">
+                        </div>
                     </div>
                 </div>
 
-                
-                <div class="input-group">
-                    <label
-                        style="font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
-                        <i class="fa-solid fa-cloud-arrow-up"></i> Register / Upload New Image
-                    </label>
-                    <div class="file-upload-drag-area" id="modal-image-drag-area"
-                        style="border: 2px dashed rgba(245, 158, 11, 0.3); padding: 16px; border-radius: var(--border-radius-md); text-align: center; cursor: pointer; background: rgba(255,255,255,0.01); transition: var(--transition-smooth);">
-                        <i class="fa-solid fa-images"
-                            style="font-size: 1.5rem; color: var(--text-muted); margin-bottom: 6px;"></i>
-                        <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0;">Drag & drop new image
-                            here or <span style="color: var(--primary); font-weight: 600;">Browse</span></p>
-                        <input type="file" id="modal-image-file-picker" accept="image/*" style="display: none;">
+                <!-- Video Mode Content -->
+                <div id="media-video-inputs-container"
+                    style="display: none; flex-direction: column; gap: 15px; width: 100%;">
+                    <div class="input-group">
+                        <label
+                            style="font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+                            <i class="fa-solid fa-file-video" data-icon-id="static-icon-26"></i> Available Videos in Folder
+                        </label>
+                        <div class="image-gallery-grid" id="modal-video-gallery-container"
+                            style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; max-height: 150px; overflow-y: auto;">
+                            <!-- Dynamic video thumbnail cards will be rendered here -->
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="modal-video-url"
+                            style="font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+                            <i class="fa-solid fa-link" data-icon-id="static-icon-27"></i> Video File Path or URL
+                        </label>
+                        <input type="text" id="modal-video-url"
+                            placeholder="e.g. videos/01.mp4 or https://youtube.com/watch?v=..."
+                            style="background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); color: var(--text-primary); padding: 12px 16px; border-radius: var(--border-radius-md); font-family: inherit; font-size: 0.9rem; outline: none; width: 100%; box-sizing: border-box;">
+                        <span style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Select from the
+                            library above, enter an external link, or upload an MP4/WebM video.</span>
+                    </div>
+
+                    <div class="input-group">
+                        <label
+                            style="font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+                            <i class="fa-solid fa-file-video" data-icon-id="static-icon-28"></i> Upload New Local Video
+                        </label>
+                        <div class="file-upload-drag-area" id="modal-video-drag-area"
+                            style="border: 2px dashed rgba(245, 158, 11, 0.3); padding: 16px; border-radius: var(--border-radius-md); text-align: center; cursor: pointer; background: rgba(255,255,255,0.01); transition: var(--transition-smooth);">
+                            <i class="fa-solid fa-file-video" data-icon-id="static-icon-29"
+                                style="font-size: 1.5rem; color: var(--text-muted); margin-bottom: 6px;"></i>
+                            <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 0;"
+                                id="video-upload-label">Drag & drop MP4/WebM video here or <span
+                                    style="color: var(--primary); font-weight: 600;">Browse</span></p>
+                            <input type="file" id="modal-video-file-picker" accept="video/*" style="display: none;">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -467,48 +536,57 @@
                 <button type="button" class="btn btn-secondary" id="cancel-image-submit"
                     style="flex: 1; padding: 10px; font-size: 0.85rem;">Cancel</button>
                 <button type="button" class="btn btn-primary" id="apply-image-submit"
-                    style="flex: 1; padding: 10px; font-size: 0.85rem;"><i class="fa-solid fa-circle-check"></i> Apply
-                    Selection</button>
+                    style="flex: 1; padding: 10px; font-size: 0.85rem;"><i class="fa-solid fa-circle-check" data-icon-id="static-icon-30"></i> Apply
+                    Media</button>
             </div>
         </div>
     </div>
 
-    
+
     <div class="secret-login-modal" id="wysiwyg-icon-modal-overlay">
         <div class="glass-panel login-card" style="position: relative; max-width: 520px; width: 100%;">
             <button id="close-icon-modal"
                 style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1.2rem;"><i
-                    class="fa-solid fa-xmark"></i></button>
+                    class="fa-solid fa-xmark" data-icon-id="static-icon-31"></i></button>
             <div class="login-header" style="margin-bottom: 20px;">
-                <i class="fa-solid fa-icons" style="color: var(--primary); font-size: 2.5rem; margin-bottom: 12px;"></i>
+                <i class="fa-solid fa-icons" data-icon-id="static-icon-32" style="color: var(--primary); font-size: 2.5rem; margin-bottom: 12px;"></i>
                 <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.8rem; margin-bottom: 8px;">Select Curated
                     Icon</h2>
                 <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">Pick a stunning and
                     modern icon style to customize this section's branding.</p>
             </div>
-            <div class="icon-modal-body" style="text-align: left;">
+            <div class="icon-modal-body" style="text-align: left; display: flex; flex-direction: column; gap: 15px;">
                 <div class="icon-picker-grid" id="modal-icon-picker-container">
-                    
+
+                </div>
+
+                <div class="input-group" style="width: 100%;">
+                    <label
+                        style="font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+                        <i class="fa-solid fa-keyboard" data-icon-id="static-icon-33"></i> Or Type FontAwesome Class Name Manually
+                    </label>
+                    <input type="text" id="modal-icon-custom-class" placeholder="e.g., fa-gas-pump, fa-phone, fa-gear"
+                        style="width: 100%; padding: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); border-radius: var(--border-radius-md); color: var(--text-primary); font-family: inherit; font-size: 0.90rem; transition: var(--transition-smooth); outline: none;">
                 </div>
             </div>
             <div style="display: flex; gap: 10px; margin-top: 25px;">
                 <button type="button" class="btn btn-secondary" id="cancel-icon-submit"
                     style="flex: 1; padding: 10px; font-size: 0.85rem;">Cancel</button>
                 <button type="button" class="btn btn-primary" id="apply-icon-submit"
-                    style="flex: 1; padding: 10px; font-size: 0.85rem;"><i class="fa-solid fa-circle-check"></i> Apply
+                    style="flex: 1; padding: 10px; font-size: 0.85rem;"><i class="fa-solid fa-circle-check" data-icon-id="static-icon-34"></i> Apply
                     Icon</button>
             </div>
         </div>
     </div>
 
-    
+
     <div class="secret-login-modal" id="wysiwyg-sections-modal-overlay">
         <div class="glass-panel login-card" style="position: relative; max-width: 520px; width: 100%;">
             <button id="close-sections-modal"
                 style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 1.2rem;"><i
-                    class="fa-solid fa-xmark"></i></button>
+                    class="fa-solid fa-xmark" data-icon-id="static-icon-35"></i></button>
             <div class="login-header" style="margin-bottom: 20px;">
-                <i class="fa-solid fa-eye-slash"
+                <i class="fa-solid fa-eye-slash" data-icon-id="static-icon-36"
                     style="color: var(--primary); font-size: 2.5rem; margin-bottom: 12px;"></i>
                 <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.8rem; margin-bottom: 8px;">Manage Page
                     Sections</h2>
@@ -517,56 +595,60 @@
             </div>
             <div class="sections-modal-body" style="text-align: left;">
                 <div class="sections-list-container" id="modal-sections-list-container">
-                    
+
                 </div>
             </div>
             <div style="display: flex; gap: 10px; margin-top: 25px;">
                 <button type="button" class="btn btn-secondary" id="cancel-sections-submit"
                     style="flex: 1; padding: 10px; font-size: 0.85rem;">Cancel</button>
                 <button type="button" class="btn btn-primary" id="apply-sections-submit"
-                    style="flex: 1; padding: 10px; font-size: 0.85rem;"><i class="fa-solid fa-circle-check"></i> Apply
+                    style="flex: 1; padding: 10px; font-size: 0.85rem;"><i class="fa-solid fa-circle-check" data-icon-id="static-icon-37"></i> Apply
                     Changes</button>
             </div>
         </div>
     </div>
 
-    
+
     <div class="wysiwyg-floating-control-dock" id="wysiwyg-floating-toolbar">
         <div class="dock-branding">
-            <i class="fa-solid fa-screwdriver-wrench"></i>
+            <i class="fa-solid fa-screwdriver-wrench" data-icon-id="static-icon-38"></i>
             M.N. Desai <span id="file-sync-status"
                 style="margin-left: 12px; font-size: 0.72rem; color: #ff6b6b; padding: 4px 8px; border-radius: 4px; background: rgba(255, 107, 107, 0.1); border: 1px dashed rgba(255, 107, 107, 0.3); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-weight: 500;"
                 title="Click to link directly to your local data.json file on your computer"><i
-                    class="fa-solid fa-circle" style="font-size: 0.6rem;"></i> Link local data.json</span>
+                    class="fa-solid fa-circle" data-icon-id="static-icon-39" style="font-size: 0.6rem;"></i> Link local data.json</span>
         </div>
         <div class="dock-buttons">
             <button class="btn btn-primary" id="wysiwyg-save-btn" style="padding: 10px 20px; font-size: 0.85rem;">
-                <i class="fa-solid fa-floppy-disk"></i> Save Draft
+                <i class="fa-solid fa-floppy-disk" data-icon-id="static-icon-40"></i> Save Draft
             </button>
             <button class="btn btn-secondary" id="toolbar-sections-btn" style="padding: 10px 18px; font-size: 0.85rem;">
-                <i class="fa-solid fa-layer-group"></i> Manage Sections
+                <i class="fa-solid fa-layer-group" data-icon-id="static-icon-41"></i> Manage Sections
             </button>
             <button class="btn btn-secondary" id="wysiwyg-export-btn"
                 style="padding: 10px 18px; font-size: 0.85rem; border-color: rgba(6, 182, 212, 0.4); color: var(--secondary);">
-                <i class="fa-solid fa-file-arrow-down"></i> Export data.json
+                <i class="fa-solid fa-file-arrow-down" data-icon-id="static-icon-42"></i> Export data.json
             </button>
             <button class="btn btn-secondary" id="wysiwyg-import-btn" style="padding: 10px 18px; font-size: 0.85rem;">
-                <i class="fa-solid fa-file-arrow-up"></i> Import JSON
+                <i class="fa-solid fa-file-arrow-up" data-icon-id="static-icon-43"></i> Import JSON
             </button>
             <button class="btn btn-secondary" id="wysiwyg-reset-btn" style="padding: 10px 14px; font-size: 0.85rem;"
                 title="Revert Changes">
-                <i class="fa-solid fa-rotate-left"></i>
+                <i class="fa-solid fa-rotate-left" data-icon-id="static-icon-44"></i>
+            </button>
+            <button class="btn btn-secondary" id="wysiwyg-theme-btn" style="padding: 10px 18px; font-size: 0.85rem;"
+                title="Toggle Light/Dark Theme">
+                <i class="fa-solid fa-moon" data-icon-id="static-icon-45"></i> Toggle Theme
             </button>
             <button class="btn btn-secondary" id="wysiwyg-exit-btn"
                 style="padding: 10px 18px; font-size: 0.85rem; border-color: rgba(239, 68, 68, 0.3); color: #ef4444;">
-                <i class="fa-solid fa-door-closed"></i> Exit Editor
+                <i class="fa-solid fa-door-closed" data-icon-id="static-icon-46"></i> Exit Editor
             </button>
         </div>
     </div>
 
-    
+
     <div class="wysiwyg-drag-import-overlay" id="wysiwyg-drag-overlay">
-        <i class="fa-solid fa-cloud-arrow-up"></i>
+        <i class="fa-solid fa-cloud-arrow-up" data-icon-id="static-icon-47"></i>
         <h2 style="font-family: 'Outfit', sans-serif; font-size: 2rem; margin-bottom: 10px;">Import data.json
             Configuration</h2>
         <p style="color: var(--text-secondary); font-size: 1.1rem;">Drop your custom configuration file anywhere on the
@@ -574,14 +656,14 @@
         <input type="file" id="wysiwyg-file-picker" accept=".json" style="display: none;">
     </div>
 
-    
+
     <div class="toast-msg success" id="wysiwyg-toast-box">
-        <i class="fa-solid fa-circle-check"></i>
+        <i class="fa-solid fa-circle-check" data-icon-id="static-icon-48"></i>
         <span id="wysiwyg-toast-text">Changes saved locally! Real-time sync active.</span>
     </div>
 
-    
-    <script src="js/app.js?v=4.1"></script>
+
+    <script src="js/app.js?v=5.9"></script>
 </body>
 
 </html>

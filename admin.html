@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Staff Portal Redirector | M.N. Desai</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
             margin: 0;
             padding: 0;
-            background: #0b0f19;
+            background: #020b21;
             color: #ffffff;
             font-family: 'Inter', sans-serif;
             display: flex;
@@ -19,53 +21,66 @@
             height: 100vh;
             overflow: hidden;
         }
+
         .redirect-card {
             text-align: center;
-            background: rgba(19, 28, 49, 0.4);
+            background: rgba(6, 21, 59, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(20px);
             padding: 40px;
             border-radius: 16px;
             max-width: 400px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
         }
+
         i {
             font-size: 3rem;
-            color: #f59e0b;
+            color: #f37022;
             margin-bottom: 20px;
             animation: spin 2s linear infinite;
         }
+
         h2 {
             font-family: 'Outfit', sans-serif;
             font-size: 1.8rem;
             margin-bottom: 10px;
         }
+
         p {
             color: #94a3b8;
             font-size: 0.95rem;
             line-height: 1.5;
         }
+
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="redirect-card">
         <i class="fa-solid fa-spinner"></i>
         <h2>Accessing Staff Portal</h2>
-        <p>Verifying secure keys and establishing dynamic edit sessions. You are being redirected to the website in Edit Mode...</p>
+        <p>Verifying secure keys and establishing dynamic edit sessions. You are being redirected to the website in Edit
+            Mode...</p>
     </div>
 
     <script>
         // Automatically set session authorization parameters
         sessionStorage.setItem("mndesai_admin_auth", "authenticated");
-        
+
         // Redirect to main landing page with edit state parameters after a tiny transition delay
         setTimeout(() => {
             window.location.href = "index.html";
         }, 1200);
     </script>
 </body>
+
 </html>

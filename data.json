@@ -1,22 +1,22 @@
 {
-  "stationName": "M.N. Desai Petrol Pump",
-  "tagline": "Pure Fuel, Pure Commitment",
+  "stationName": "M N Desai Petrol Pump",
+  "tagline": "",
   "announcement": "Welcome to M.N. Desai Petrol Pump - Quality and Quantity are our daily promise! Check density live at our dispensing units.",
-  "heroTitle": "Pure Fuel,\nPure Commitment.",
-  "heroBgUrl": "images/10.png",
+  "heroTitle": "M N Desai\nPure Fuel, Pure Commitment.",
+  "heroBgUrl": "images/10.png?v=1779195236784?v=1779195919187?v=1779197392156?v=1779197414072?v=1779197502237?v=1779197516148?v=1779210827759?v=1779212186733?v=1779212309946?v=1779213211064?v=1779213348250",
   "heroStats": {
     "experienceVal": "12+",
     "experienceLabel": "YEARS LEGACY",
-    "customersVal": "500K+",
-    "customersLabel": "HAPPY VEHICLES",
+    "customersVal": "500M+",
+    "customersLabel": "HAPPY CLINTES",
     "densityVal": "Daily",
     "densityLabel": "AUTOMATED TESTS"
   },
   "fuels": [
     {
       "id": "petrol",
-      "name": "Petrol (Unleaded)",
-      "price": 102.25,
+      "name": "Petrol",
+      "price": 99.68,
       "unit": "Ltr",
       "trend": "stable",
       "change": 0
@@ -24,15 +24,15 @@
     {
       "id": "diesel",
       "name": "Diesel",
-      "price": 92.8,
+      "price": 93.25,
       "unit": "Ltr",
       "trend": "down",
       "change": -0.15
     },
     {
       "id": "speed",
-      "name": "Speed Petrol (Premium)",
-      "price": 109.8,
+      "name": "X95 Speed Petrol",
+      "price": 106.05,
       "unit": "Ltr",
       "trend": "stable",
       "change": 0,
@@ -77,7 +77,7 @@
     "description": "M N Desai company was established in 1961. During that time one can hardly find a petrol pump on road. M N Desai was dealing in Crude Oil during 1960s. M N Desai was the Petrol Pump between Ahmedabad Bagodra Road during 1970s and 1980s.",
     "experienceYears": 65,
     "experienceYearsLabel": "YEARS TRUST",
-    "customersServed": "500K+",
+    "customersServed": "500M+",
     "pureFuelCheck": "Daily automated density tests and manual filter paper check options are available to every customer on request.",
     "imageUrl": "images/01.png"
   },
@@ -151,7 +151,20 @@
     "images/07.png",
     "images/08.png",
     "images/09.png",
-    "images/10.png"
+    "images/10.png",
+    "images/11.png"
+  ],
+  "availableVideos": [
+    "videos/01.mp4",
+    "videos/02.mp4",
+    "videos/03.mp4",
+    "videos/04.mp4",
+    "videos/05.mp4",
+    "videos/06.mp4",
+    "videos/07.mp4",
+    "videos/08.mp4",
+    "videos/09.mp4",
+    "videos/10.mp4"
   ],
   "navbar": [
     {
@@ -187,11 +200,11 @@
   ],
   "sectionVisibility": {
     "hero": true,
-    "quickRates": true,
-    "prices": true,
-    "calculator": true,
+    "quickRates": false,
+    "prices": false,
+    "calculator": false,
     "services": true,
-    "trust": true,
+    "trust": false,
     "about": true,
     "testimonials": true,
     "contact": true
@@ -207,5 +220,33 @@
     }
   ],
   "hiddenServices": [],
-  "hiddenTestimonials": []
+  "hiddenTestimonials": [],
+  "legacyItems": [
+    {
+      "id": "legacy_1",
+      "year": "",
+      "title": "Establishment of M.N. Desai",
+      "desc": "M N Desai company was established in 1961. During that time one can hardly find a petrol pump on road. We started with a strong vision of serving pure fuels.",
+      "mediaType": "image",
+      "mediaUrl": "images/01.png"
+    },
+    {
+      "id": "legacy_2",
+      "year": "",
+      "title": "Crude Oil Dealings",
+      "desc": "M N Desai was dealing in Crude Oil distribution during 1960s, laying down the logistical foundation of our energy commitment.",
+      "mediaType": "image",
+      "mediaUrl": "images/11.png"
+    },
+    {
+      "id": "legacy_3",
+      "year": "",
+      "title": "Highway Network Growth",
+      "desc": "M N Desai was the Petrol Pump between Ahmedabad Bagodra Road during 1970s and 1980s, catering to major highway transport networks.",
+      "mediaType": "video",
+      "mediaUrl": "videos/01.mp4"
+    }
+  ],
+  "hiddenLegacyItems": [],
+  "theme": "dark"
 }

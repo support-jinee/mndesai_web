@@ -57,6 +57,33 @@ const BASELINE_DEFAULT_DATA = {
         { "title": "100% e-Billing", "desc": "Get digital receipts directly via SMS." },
         { "title": "Trained Staff", "desc": "Courteous staff serving safely and rapidly." }
     ],
+    "legacyItems": [
+        {
+            "id": "legacy_1",
+            "year": "1961",
+            "title": "Establishment of M.N. Desai",
+            "desc": "M N Desai company was established in 1961. During that time one can hardly find a petrol pump on road. We started with a strong vision of serving pure fuels.",
+            "mediaType": "image",
+            "mediaUrl": "images/01.png"
+        },
+        {
+            "id": "legacy_2",
+            "year": "1960s",
+            "title": "Crude Oil Dealings",
+            "desc": "M N Desai was dealing in Crude Oil distribution during 1960s, laying down the logistical foundation of our energy commitment.",
+            "mediaType": "image",
+            "mediaUrl": "images/02.png"
+        },
+        {
+            "id": "legacy_3",
+            "year": "1970s-80s",
+            "title": "Highway Network Growth",
+            "desc": "M N Desai was the Petrol Pump between Ahmedabad Bagodra Road during 1970s and 1980s, catering to major highway transport networks.",
+            "mediaType": "video",
+            "mediaUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
+        }
+    ],
+    "hiddenLegacyItems": [],
     "services": [
         { "id": "puc_services", "icon": "fa-file-invoice", "title": "PUC and PUC Renewals", "desc": "Calibrated exhaust testing equipment and instant government pollution certificate registration bays." },
         { "id": "electric_recharge", "icon": "fa-bolt", "title": "Electric Recharging", "desc": "High-voltage DC fast charging stations supporting quick power-ups for modern electric cars and fleets." },
@@ -87,7 +114,20 @@ const BASELINE_DEFAULT_DATA = {
         "images/07.png",
         "images/08.png",
         "images/09.png",
-        "images/10.png"
+        "images/10.png",
+        "images/11.png"
+    ],
+    "availableVideos": [
+        "videos/01.mp4",
+        "videos/02.mp4",
+        "videos/03.mp4",
+        "videos/04.mp4",
+        "videos/05.mp4",
+        "videos/06.mp4",
+        "videos/07.mp4",
+        "videos/08.mp4",
+        "videos/09.mp4",
+        "videos/10.mp4"
     ],
     "navbar": [
         { "id": "nav-home", "text": "Home", "link": "#hero" },
@@ -123,6 +163,8 @@ async function initializeWebsite() {
 
     await loadSiteData();
 
+    applySavedTheme();
+
     applySectionVisibility();
 
     populateBrandingAndGeneral();
@@ -135,6 +177,8 @@ async function initializeWebsite() {
 
     populateQualityAssurance();
 
+    renderLegacyTimeline();
+
     renderTestimonials();
 
     populateContactAndFooter();
@@ -142,6 +186,8 @@ async function initializeWebsite() {
     setupNavigationEffects();
 
     setupSecretAdminGate();
+
+    applyCustomIcons();
 
     checkAdminSessionOnLoad();
 
@@ -172,8 +218,9 @@ async function loadSiteData() {
     const cachedData = localStorage.getItem("mndesai_site_data");
     if (cachedData) {
         try {
-            siteData = JSON.parse(cachedData);
-            console.log("M.N. Desai: Site data loaded from localStorage (offline fallback).");
+            const rawData = JSON.parse(cachedData);
+            siteData = processLoadedData(rawData);
+            console.log("M.N. Desai: Site data loaded from localStorage (offline fallback) and merged with baselines.");
             return;
         } catch (e) {
             console.error("M.N. Desai: Failed to parse localStorage cache. Reverting...", e);
@@ -266,7 +313,11 @@ function populateBrandingAndGeneral() {
 
     const heroSection = document.getElementById("hero");
     if (heroSection && siteData.heroBgUrl) {
-        heroSection.style.backgroundImage = `radial-gradient(circle at 10% 20%, rgba(30, 41, 75, 0.3) 0%, rgba(11, 15, 25, 0.9) 90%), url('${siteData.heroBgUrl}')`;
+        const isLight = siteData.theme === "light";
+        const overlay = isLight 
+            ? "radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.8) 0%, rgba(244, 246, 250, 0.95) 90%)"
+            : "radial-gradient(circle at 10% 20%, rgba(10, 31, 84, 0.3) 0%, rgba(2, 11, 33, 0.95) 90%)";
+        heroSection.style.backgroundImage = `${overlay}, url('${siteData.heroBgUrl}?v=${Date.now()}')`;
     }
 
     if (siteData.titles) {
@@ -397,7 +448,7 @@ function renderFuelRates() {
             card.innerHTML = `
                 ${controlsHtml}
                 <div class="card-icon-wrap">
-                    <i class="fa-solid ${iconClass}"></i>
+                    <i class="fa-solid ${iconClass}" data-fuel-icon-id="${fuel.id}"></i>
                 </div>
                 <h3 class="fuel-name-editable" data-fuel-id="${fuel.id}">${fuel.name}</h3>
                 <span class="unit-label-editable" data-fuel-id="${fuel.id}">Active rate per ${fuel.unit}</span>
@@ -415,6 +466,15 @@ function renderFuelRates() {
                 const editableUnitLabel = card.querySelector(".unit-label-editable");
                 const editableVal = card.querySelector(".price-val-editable");
                 const trendBadge = card.querySelector(".trend-badge");
+                const editableIcon = card.querySelector(".card-icon-wrap i");
+
+                if (editableIcon) {
+                    editableIcon.style.cursor = "pointer";
+                    editableIcon.title = "Click to Change Icon";
+                    editableIcon.addEventListener("click", () => {
+                        window.openIconPickerModal(editableIcon);
+                    });
+                }
 
                 if (editableName) {
                     editableName.setAttribute("contenteditable", "true");
@@ -578,6 +638,15 @@ function renderServices() {
         if (isEditMode) {
             const editableTitle = card.querySelector(".service-title-editable");
             const editableDesc = card.querySelector(".service-desc-editable");
+            const editableIcon = card.querySelector(".service-icon-box i");
+
+            if (editableIcon) {
+                editableIcon.style.cursor = "pointer";
+                editableIcon.title = "Click to Change Icon";
+                editableIcon.addEventListener("click", () => {
+                    window.openIconPickerModal(editableIcon);
+                });
+            }
 
             if (editableTitle) {
                 editableTitle.setAttribute("contenteditable", "true");
@@ -729,6 +798,228 @@ function renderTestimonials() {
     }
 }
 
+function renderLegacyTimeline() {
+    const timelineContainer = document.getElementById("about-timeline-container");
+    if (!timelineContainer || !siteData || !Array.isArray(siteData.legacyItems)) return;
+
+    timelineContainer.innerHTML = "";
+
+    const isEditMode = document.body.classList.contains("wysiwyg-edit-mode-active");
+
+    // Filter visible items in view mode, show all in edit mode
+    const itemsToRender = isEditMode 
+        ? siteData.legacyItems 
+        : siteData.legacyItems.filter(item => !item.hidden);
+
+    if (itemsToRender.length === 0) {
+        timelineContainer.innerHTML = `<p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; padding: 20px;">No milestones available.</p>`;
+        return;
+    }
+
+    itemsToRender.forEach((item, index) => {
+        const row = document.createElement("div");
+        row.className = "timeline-row";
+        row.setAttribute("data-legacy-id", item.id);
+        
+        if (item.hidden === true) {
+            row.className += " item-card-hidden";
+        }
+
+        // Render Media Side HTML (Image or Video)
+        let mediaHtml = "";
+        const editBtnHtml = isEditMode 
+            ? `<div class="wysiwyg-media-edit-overlay">
+                 <button type="button" class="btn btn-primary" onclick="openLegacyMediaModal('${item.id}')" style="padding: 8px 14px; font-size: 0.75rem;">
+                    <i class="fa-solid fa-photo-film"></i> Change Media
+                 </button>
+               </div>`
+            : "";
+
+        if (item.mediaType === "video") {
+            const url = item.mediaUrl || "";
+            const isYouTube = url.includes("youtube.com") || url.includes("youtu.be");
+
+            if (isYouTube) {
+                let videoId = "";
+                if (url.includes("youtu.be/")) {
+                    videoId = url.split("youtu.be/")[1].split("?")[0];
+                } else if (url.includes("v=")) {
+                    videoId = url.split("v=")[1].split("&")[0];
+                } else if (url.includes("embed/")) {
+                    videoId = url.split("embed/")[1].split("?")[0];
+                }
+
+                mediaHtml = `
+                    <div class="timeline-media">
+                        ${editBtnHtml}
+                        <iframe class="legacy-iframe-element" src="https://www.youtube.com/embed/${videoId}?autoplay=0&mute=1&loop=1&playlist=${videoId}&controls=1" allow="encrypted-media" allowfullscreen></iframe>
+                    </div>
+                `;
+            } else {
+                mediaHtml = `
+                    <div class="timeline-media">
+                        ${editBtnHtml}
+                        <video class="legacy-video-element" loop muted playsinline controls src="${url}?v=${Date.now()}"></video>
+                    </div>
+                `;
+            }
+        } else {
+            const url = item.mediaUrl || "images/01.png";
+            mediaHtml = `
+                <div class="timeline-media">
+                    ${editBtnHtml}
+                    <img class="legacy-video-element" src="${url}?v=${Date.now()}" alt="${item.title}" style="object-fit: cover; width:100%; height:100%;">
+                </div>
+            `;
+        }
+
+        // Render Card/Content Side HTML
+        let controlsHtml = "";
+        if (isEditMode) {
+            controlsHtml = `
+                <div class="item-edit-controls" style="top: 15px; right: 15px; z-index: 10;">
+                    <button class="item-btn hide-btn" onclick="toggleHideLegacyItem(event, '${item.id}')" title="Toggle Hide/Show Milestone"><i class="fa-solid ${item.hidden ? 'fa-eye-slash' : 'fa-eye'}"></i></button>
+                    <button class="item-btn delete-btn" onclick="deleteLegacyItem(event, '${item.id}')" title="Delete Milestone"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            `;
+        }
+
+        const contentHtml = `
+            <div class="timeline-content">
+                ${controlsHtml}
+                <div class="timeline-header">
+                    <span class="timeline-year legacy-year-editable" data-legacy-id="${item.id}">${item.year}</span>
+                </div>
+                <h4 class="timeline-title legacy-title-editable" data-legacy-id="${item.id}">${item.title}</h4>
+                <p class="timeline-desc legacy-desc-editable" data-legacy-id="${item.id}">${item.desc}</p>
+            </div>
+        `;
+
+        row.innerHTML = mediaHtml + contentHtml;
+
+        if (isEditMode) {
+            const editableYear = row.querySelector(".legacy-year-editable");
+            const editableTitle = row.querySelector(".legacy-title-editable");
+            const editableDesc = row.querySelector(".legacy-desc-editable");
+
+            if (editableYear) {
+                editableYear.setAttribute("contenteditable", "true");
+                editableYear.className += " wysiwyg-editable-element";
+                editableYear.addEventListener("keydown", (e) => {
+                    if (e.key === "Enter") e.preventDefault();
+                });
+            }
+            if (editableTitle) {
+                editableTitle.setAttribute("contenteditable", "true");
+                editableTitle.className += " wysiwyg-editable-element";
+                editableTitle.addEventListener("keydown", (e) => {
+                    if (e.key === "Enter") e.preventDefault();
+                });
+            }
+            if (editableDesc) {
+                editableDesc.setAttribute("contenteditable", "true");
+                editableDesc.className += " wysiwyg-editable-element";
+                editableDesc.addEventListener("keydown", (e) => {
+                    if (e.key === "Enter") e.preventDefault();
+                });
+            }
+        }
+
+        timelineContainer.appendChild(row);
+    });
+
+    if (isEditMode) {
+        const addPlaceholder = document.createElement("div");
+        addPlaceholder.className = "timeline-row add-new-card-placeholder";
+        addPlaceholder.style.justifyContent = "center";
+        addPlaceholder.style.padding = "40px";
+        addPlaceholder.style.border = "2px dashed var(--border-glass)";
+        addPlaceholder.style.borderRadius = "24px";
+        addPlaceholder.style.cursor = "pointer";
+        addPlaceholder.style.display = "flex";
+        addPlaceholder.style.flexDirection = "column";
+        addPlaceholder.style.alignItems = "center";
+
+        addPlaceholder.innerHTML = `
+            <i class="fa-solid fa-circle-plus" style="font-size: 2rem; color: var(--primary); margin-bottom: 12px;"></i>
+            <span style="display: block; font-size: 1rem; font-weight: 600; color: var(--text-primary);">Add New Alternating Milestone Row</span>
+        `;
+        addPlaceholder.addEventListener("click", () => {
+            addNewLegacyItem();
+        });
+        timelineContainer.appendChild(addPlaceholder);
+    }
+}
+
+// Global scope window methods for timeline edits
+window.toggleHideLegacyItem = function (event, itemId) {
+    if (event && event.stopPropagation) event.stopPropagation();
+    if (!siteData || !Array.isArray(siteData.legacyItems)) return;
+    
+    const item = siteData.legacyItems.find(i => i.id === itemId);
+    if (item) {
+        item.hidden = !item.hidden;
+        renderLegacyTimeline();
+        scrapeAndSaveWysiwygDOM(false);
+        showWysiwygToast(item.hidden ? "Milestone hidden from public!" : "Milestone made visible!", "success");
+    }
+};
+
+window.deleteLegacyItem = function (event, itemId) {
+    if (event && event.stopPropagation) event.stopPropagation();
+    if (!siteData || !Array.isArray(siteData.legacyItems)) return;
+
+    if (confirm("Are you sure you want to delete this historical milestone?")) {
+        siteData.legacyItems = siteData.legacyItems.filter(i => i.id !== itemId);
+        renderLegacyTimeline();
+        scrapeAndSaveWysiwygDOM(false);
+        showWysiwygToast("Milestone deleted successfully!", "success");
+    }
+};
+
+window.addNewLegacyItem = function () {
+    if (!siteData || !Array.isArray(siteData.legacyItems)) return;
+
+    const newId = "legacy_" + Date.now();
+    const newItem = {
+        id: newId,
+        year: "New Year",
+        title: "New Historical Milestone",
+        desc: "Double-click this text block in edit mode to customize your new milestone. You can assign images or video urls easily.",
+        mediaType: "image",
+        mediaUrl: "images/01.png"
+    };
+
+    siteData.legacyItems.push(newItem);
+    renderLegacyTimeline();
+    scrapeAndSaveWysiwygDOM(false);
+    showWysiwygToast("New milestone milestone added!", "success");
+};
+
+let activeLegacyMediaTargetId = null;
+
+window.openLegacyMediaModal = function (itemId) {
+    activeLegacyMediaTargetId = itemId;
+    activeImageEditingTarget = "legacy";
+    
+    // Default modal view to the target item's media type
+    const item = siteData.legacyItems.find(i => i.id === itemId);
+    if (item) {
+        // Toggle the tab
+        if (item.mediaType === "video") {
+            const tabVideo = document.getElementById("media-tab-video");
+            if (tabVideo) tabVideo.click();
+            const inputVal = document.getElementById("modal-video-url");
+            if (inputVal) inputVal.value = item.mediaUrl || "";
+        } else {
+            const tabImage = document.getElementById("media-tab-image");
+            if (tabImage) tabImage.click();
+        }
+    }
+    
+    openImageEditModal();
+};
+
 function populateContactAndFooter() {
     if (!siteData) return;
 
@@ -877,6 +1168,7 @@ function updateActiveNavLink() {
 function setupSecretAdminGate() {
     const secretTrigger = document.getElementById("secret-lock-trigger");
     const navbarPumpIcon = document.getElementById("navbar-pump-icon");
+    const navbarLogoImg = document.getElementById("navbar-logo-img");
     const modalOverlay = document.getElementById("secret-login-modal-overlay");
     const closeModal = document.getElementById("close-secret-login");
     const loginBtn = document.getElementById("secret-login-submit");
@@ -888,6 +1180,7 @@ function setupSecretAdminGate() {
     if (secretTrigger) {
         secretTrigger.addEventListener("click", (e) => {
             e.preventDefault();
+            e.stopPropagation();
             secretClickCount++;
 
             clearTimeout(secretClickTimer);
@@ -902,11 +1195,17 @@ function setupSecretAdminGate() {
         });
     }
 
+    const triggerModal = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        openSecretLoginModal();
+    };
+
     if (navbarPumpIcon) {
-        navbarPumpIcon.addEventListener("click", (e) => {
-            e.preventDefault();
-            openSecretLoginModal();
-        });
+        navbarPumpIcon.addEventListener("click", triggerModal);
+    }
+    if (navbarLogoImg) {
+        navbarLogoImg.addEventListener("click", triggerModal);
     }
 
     const openSecretLoginModal = () => {
@@ -962,9 +1261,11 @@ function enableWYSIWYGMode() {
     if (toolbar) toolbar.classList.add("slide-up-active");
 
     setElementsEditable(true);
+    setupGenericIconsEditable();
 
     renderFuelRates();
     renderServices();
+    renderLegacyTimeline();
     renderTestimonials();
 
     bindWysiwygToolbarButtons();
@@ -1088,6 +1389,41 @@ function setElementsEditable(enable) {
     }
 }
 
+function setupGenericIconsEditable() {
+    document.querySelectorAll('i[data-icon-id]').forEach(icon => {
+        if (icon.closest('#wysiwyg-floating-toolbar')) return;
+        if (icon.hasAttribute('data-fuel-icon-id') || icon.hasAttribute('data-service-icon-id')) return;
+        
+        icon.style.cursor = "pointer";
+        icon.title = "Click to change icon";
+        
+        if (!icon.dataset.iconBound) {
+            icon.addEventListener("click", (e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                window.openIconPickerModal(icon);
+            });
+            icon.dataset.iconBound = "true";
+        }
+    });
+}
+
+function applyCustomIcons() {
+    if (!siteData || !siteData.customIcons) return;
+    for (const [iconId, customClass] of Object.entries(siteData.customIcons)) {
+        const icon = document.querySelector(`i[data-icon-id="${iconId}"]`);
+        if (icon) {
+            const classList = [...icon.classList];
+            classList.forEach(cls => {
+                if (cls.startsWith("fa-") && cls !== "fa-solid" && cls !== "fa-regular" && cls !== "fa-brands") {
+                    icon.classList.remove(cls);
+                }
+            });
+            icon.classList.add(customClass);
+        }
+    }
+}
+
 function bindWysiwygToolbarButtons() {
     const saveBtn = document.getElementById("wysiwyg-save-btn");
     const exportBtn = document.getElementById("wysiwyg-export-btn");
@@ -1161,6 +1497,28 @@ function bindWysiwygToolbarButtons() {
             }, 1000);
         }
     });
+
+    const themeBtn = document.getElementById("wysiwyg-theme-btn");
+    if (themeBtn) {
+        themeBtn.addEventListener("click", () => {
+            const currentTheme = siteData.theme || "dark";
+            siteData.theme = currentTheme === "dark" ? "light" : "dark";
+            
+            applySavedTheme();
+            
+            // Also need to update the hero background image overlay styling dynamically in edit mode
+            const heroSection = document.getElementById("hero");
+            if (heroSection && siteData.heroBgUrl) {
+                const overlay = siteData.theme === "light" 
+                    ? "radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.8) 0%, rgba(244, 246, 250, 0.95) 90%)"
+                    : "radial-gradient(circle at 10% 20%, rgba(10, 31, 84, 0.3) 0%, rgba(2, 11, 33, 0.95) 90%)";
+                heroSection.style.backgroundImage = `${overlay}, url('${siteData.heroBgUrl}?v=${Date.now()}')`;
+            }
+            
+            scrapeAndSaveWysiwygDOM(false);
+            showWysiwygToast(`Theme switched to ${siteData.theme === "light" ? "Light" : "Dark"}! Click 'Save Draft' to finalize.`, "success");
+        });
+    }
 
     exitBtn.addEventListener("click", () => {
         sessionStorage.removeItem("mndesai_admin_auth");
@@ -1373,6 +1731,18 @@ function scrapeAndSaveWysiwygDOM(triggerToast = true) {
         });
     }
 
+    if (Array.isArray(siteData.legacyItems)) {
+        siteData.legacyItems.forEach(item => {
+            const yearNode = document.querySelector(`.legacy-year-editable[data-legacy-id="${item.id}"]`);
+            const titleNode = document.querySelector(`.legacy-title-editable[data-legacy-id="${item.id}"]`);
+            const descNode = document.querySelector(`.legacy-desc-editable[data-legacy-id="${item.id}"]`);
+
+            if (yearNode) item.year = yearNode.innerText.trim();
+            if (titleNode) item.title = titleNode.innerText.trim();
+            if (descNode) item.desc = descNode.innerText.trim();
+        });
+    }
+
     localStorage.setItem("mndesai_site_data", JSON.stringify(siteData));
 
     setupTripCalculator();
@@ -1472,6 +1842,8 @@ function showWysiwygToast(message, type = "success") {
 let selectedImageFile = null;
 let activeImageEditingTarget = "about";
 let selectedGalleryImageUrl = null;
+let selectedVideoFile = null;
+let selectedGalleryVideoUrl = null;
 
 function renderImageGalleryGrid() {
     const container = document.getElementById("modal-image-gallery-container");
@@ -1503,7 +1875,7 @@ function renderImageGalleryGrid() {
             selectedGalleryImageUrl = imgUrl;
         }
 
-        card.innerHTML = `<img src="${imgUrl}" alt="Gallery image">`;
+        card.innerHTML = `<img src="${imgUrl}?v=${Date.now()}" alt="Gallery image">`;
 
         card.addEventListener("click", () => {
 
@@ -1523,6 +1895,69 @@ function renderImageGalleryGrid() {
     });
 }
 
+function renderVideoGalleryGrid() {
+    const container = document.getElementById("modal-video-gallery-container");
+    if (!container || !siteData) return;
+
+    container.innerHTML = "";
+
+    const videos = siteData.availableVideos || [
+        "videos/01.mp4",
+        "videos/02.mp4",
+        "videos/03.mp4",
+        "videos/04.mp4",
+        "videos/05.mp4",
+        "videos/06.mp4",
+        "videos/07.mp4",
+        "videos/08.mp4",
+        "videos/09.mp4",
+        "videos/10.mp4"
+    ];
+
+    let currentVideoUrl = "";
+    if (activeImageEditingTarget === "legacy" && activeLegacyMediaTargetId) {
+        const item = siteData.legacyItems.find(i => i.id === activeLegacyMediaTargetId);
+        if (item && item.mediaType === "video") {
+            currentVideoUrl = item.mediaUrl || "";
+        }
+    }
+
+    videos.forEach(videoUrl => {
+        const card = document.createElement("div");
+        card.className = "video-thumbnail-item";
+
+        if (currentVideoUrl && (currentVideoUrl === videoUrl || currentVideoUrl.endsWith(videoUrl))) {
+            card.className += " active";
+            selectedGalleryVideoUrl = videoUrl;
+        }
+
+        const fileName = videoUrl.substring(videoUrl.lastIndexOf('/') + 1);
+        card.innerHTML = `
+            <i class="fa-solid fa-file-video"></i>
+            <span>${fileName}</span>
+        `;
+
+        card.addEventListener("click", () => {
+            document.querySelectorAll(".video-thumbnail-item").forEach(item => item.classList.remove("active"));
+            card.classList.add("active");
+            selectedGalleryVideoUrl = videoUrl;
+            selectedVideoFile = null; // Clear file picker selection
+
+            // Update text input value
+            const videoInput = document.getElementById("modal-video-url");
+            if (videoInput) videoInput.value = videoUrl;
+
+            const videoDragArea = document.getElementById("modal-video-drag-area");
+            if (videoDragArea) {
+                const p = videoDragArea.querySelector("p");
+                if (p) p.innerHTML = 'Selected: <span style="color: var(--primary); font-weight: 600;">' + fileName + '</span>';
+            }
+        });
+
+        container.appendChild(card);
+    });
+}
+
 function bindImageModalEvents() {
     const modalOverlay = document.getElementById("wysiwyg-image-modal-overlay");
     const closeModalBtn = document.getElementById("close-image-modal");
@@ -1533,15 +1968,58 @@ function bindImageModalEvents() {
 
     if (!modalOverlay) return;
 
+    // Active media tab
+    let activeMediaTab = "image"; // "image" or "video"
+    const tabImage = document.getElementById("media-tab-image");
+    const tabVideo = document.getElementById("media-tab-video");
+    const imageInputsContainer = document.getElementById("media-image-inputs-container");
+    const videoInputsContainer = document.getElementById("media-video-inputs-container");
+
+    if (tabImage && tabVideo && imageInputsContainer && videoInputsContainer) {
+        tabImage.addEventListener("click", () => {
+            activeMediaTab = "image";
+            tabImage.classList.add("active");
+            tabImage.style.color = "var(--primary)";
+            tabImage.style.borderBottom = "2px solid var(--primary)";
+            tabVideo.classList.remove("active");
+            tabVideo.style.color = "var(--text-secondary)";
+            tabVideo.style.borderBottom = "none";
+            imageInputsContainer.style.display = "flex";
+            videoInputsContainer.style.display = "none";
+        });
+
+        tabVideo.addEventListener("click", () => {
+            activeMediaTab = "video";
+            tabVideo.classList.add("active");
+            tabVideo.style.color = "var(--primary)";
+            tabVideo.style.borderBottom = "2px solid var(--primary)";
+            tabImage.classList.remove("active");
+            tabImage.style.color = "var(--text-secondary)";
+            tabImage.style.borderBottom = "none";
+            imageInputsContainer.style.display = "none";
+            videoInputsContainer.style.display = "flex";
+        });
+    }
+
     const closeModal = () => {
         modalOverlay.classList.remove("show");
         selectedImageFile = null;
         selectedGalleryImageUrl = null;
+        selectedVideoFile = null;
         if (filePicker) filePicker.value = "";
+        
+        const videoFilePicker = document.getElementById("modal-video-file-picker");
+        if (videoFilePicker) videoFilePicker.value = "";
 
         if (dragArea) {
             const p = dragArea.querySelector("p");
             if (p) p.innerHTML = 'Drag & drop new image here or <span style="color: var(--primary); font-weight: 600;">Browse</span>';
+        }
+        
+        const videoDragArea = document.getElementById("modal-video-drag-area");
+        if (videoDragArea) {
+            const p = videoDragArea.querySelector("p");
+            if (p) p.innerHTML = 'Drag & drop MP4/WebM video here or <span style="color: var(--primary); font-weight: 600;">Browse</span>';
         }
     };
 
@@ -1553,7 +2031,6 @@ function bindImageModalEvents() {
     });
 
     const pickImageFile = async () => {
-
         if ('showOpenFilePicker' in window) {
             try {
                 const [fileHandle] = await window.showOpenFilePicker({
@@ -1572,7 +2049,6 @@ function bindImageModalEvents() {
                 return null;
             }
         } else {
-
             return new Promise((resolve) => {
                 filePicker.value = "";
                 filePicker.onchange = (e) => {
@@ -1641,33 +2117,187 @@ function bindImageModalEvents() {
         }
     };
 
+    // Video selector bindings
+    const videoFilePicker = document.getElementById("modal-video-file-picker");
+    const videoDragArea = document.getElementById("modal-video-drag-area");
+    let selectedVideoFile = null;
+
+    const handleVideoFileSelection = (file) => {
+        if (!file.type.startsWith("video/")) {
+            showWysiwygToast("Please select a valid video file (MP4/WebM).", "error");
+            return;
+        }
+        selectedVideoFile = file;
+        const videoInput = document.getElementById("modal-video-url");
+        if (videoInput) videoInput.value = "videos/" + file.name;
+        
+        const label = document.getElementById("video-upload-label");
+        if (label) label.innerHTML = `Selected: <span style="color: var(--primary); font-weight: 600;">${file.name}</span>`;
+    };
+
+    const pickVideoFile = async () => {
+        if ('showOpenFilePicker' in window) {
+            try {
+                const [fileHandle] = await window.showOpenFilePicker({
+                    id: 'mndesai-videos-picker',
+                    types: [{
+                        description: 'Videos',
+                        accept: {
+                            'video/*': ['.mp4', '.webm', '.ogg']
+                        }
+                    }]
+                });
+                const file = await fileHandle.getFile();
+                return file;
+            } catch (err) {
+                console.warn("User cancelled or file picker failed", err);
+                return null;
+            }
+        } else {
+            return new Promise((resolve) => {
+                videoFilePicker.value = "";
+                videoFilePicker.onchange = (e) => {
+                    if (e.target.files.length > 0) {
+                        resolve(e.target.files[0]);
+                    } else {
+                        resolve(null);
+                    }
+                };
+                videoFilePicker.click();
+            });
+        }
+    };
+
+    if (videoDragArea) {
+        videoDragArea.addEventListener("click", async () => {
+            const file = await pickVideoFile();
+            if (file) handleVideoFileSelection(file);
+        });
+
+        videoDragArea.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            videoDragArea.classList.add("dragover-active");
+        });
+
+        videoDragArea.addEventListener("dragleave", () => {
+            videoDragArea.classList.remove("dragover-active");
+        });
+
+        videoDragArea.addEventListener("drop", (e) => {
+            e.preventDefault();
+            videoDragArea.classList.remove("dragover-active");
+            if (e.dataTransfer.files.length > 0) {
+                handleVideoFileSelection(e.dataTransfer.files[0]);
+            }
+        });
+    }
+
+    if (videoFilePicker) {
+        videoFilePicker.addEventListener("change", (e) => {
+            if (e.target.files.length > 0) {
+                handleVideoFileSelection(e.target.files[0]);
+            }
+        });
+    }
+
     if (applyModalBtn) {
         applyModalBtn.addEventListener("click", () => {
             const aboutImg = document.getElementById("about-image");
             const heroSection = document.getElementById("hero");
 
-            let finalImageUrl = "";
-            let objectUrl = null;
+            const imageInput = document.getElementById("modal-image-url");
+            let finalImageUrl = imageInput ? imageInput.value.trim() : "";
 
-            if (selectedGalleryImageUrl) {
-                finalImageUrl = selectedGalleryImageUrl;
-            } else if (selectedImageFile) {
+            if (selectedImageFile) {
                 finalImageUrl = "images/" + selectedImageFile.name;
-                objectUrl = URL.createObjectURL(selectedImageFile);
+            } else if (selectedGalleryImageUrl) {
+                finalImageUrl = selectedGalleryImageUrl;
+            }
 
+            if (activeImageEditingTarget === "legacy") {
+                if (!siteData || !Array.isArray(siteData.legacyItems) || !activeLegacyMediaTargetId) {
+                    closeModal();
+                    return;
+                }
+
+                const item = siteData.legacyItems.find(i => i.id === activeLegacyMediaTargetId);
+                if (!item) {
+                    closeModal();
+                    return;
+                }
+
+                if (activeMediaTab === "video") {
+                    const videoInput = document.getElementById("modal-video-url");
+                    let finalVideoUrl = videoInput ? videoInput.value.trim() : "";
+
+                    if (selectedVideoFile) {
+                        finalVideoUrl = "videos/" + selectedVideoFile.name;
+                        
+                        if (!siteData.availableVideos) siteData.availableVideos = [];
+                        if (!siteData.availableVideos.includes(finalVideoUrl)) {
+                            siteData.availableVideos.push(finalVideoUrl);
+                        }
+                    }
+
+                    if (!finalVideoUrl) {
+                        showWysiwygToast("Please enter a video URL or select a video file.", "error");
+                        return;
+                    }
+
+                    item.mediaType = "video";
+                    item.mediaUrl = finalVideoUrl;
+
+                    showWysiwygToast("Milestone media set to Video! Copy local files to 'videos/' folder and save draft.", "success");
+                } else {
+                    if (!finalImageUrl) {
+                        showWysiwygToast("Please select an image from the gallery, type a path, or upload a file first.", "error");
+                        return;
+                    }
+
+                    item.mediaType = "image";
+                    item.mediaUrl = finalImageUrl;
+
+                    if (finalImageUrl.startsWith("images/")) {
+                        if (!siteData.availableImages) siteData.availableImages = [];
+                        if (!siteData.availableImages.includes(finalImageUrl)) {
+                            siteData.availableImages.push(finalImageUrl);
+                        }
+                    }
+
+                    showWysiwygToast("Milestone media set to Image! Click 'Save Draft' at the bottom to finalize.", "success");
+                }
+
+                renderLegacyTimeline();
+                scrapeAndSaveWysiwygDOM(false);
+                closeModal();
+                return;
+            }
+
+            let objectUrl = null;
+            if (selectedImageFile) {
+                objectUrl = URL.createObjectURL(selectedImageFile);
+            }
+
+            if (!finalImageUrl) {
+                showWysiwygToast("Please select an image from the gallery, type a path, or upload a file first.", "error");
+                return;
+            }
+
+            if (finalImageUrl.startsWith("images/")) {
                 if (!siteData.availableImages) siteData.availableImages = [];
                 if (!siteData.availableImages.includes(finalImageUrl)) {
                     siteData.availableImages.push(finalImageUrl);
                 }
-            } else {
-                showWysiwygToast("Please select an image from the gallery or choose a file first.", "error");
-                return;
             }
 
             if (activeImageEditingTarget === "hero") {
                 if (heroSection) {
                     const appliedSrc = objectUrl || finalImageUrl;
-                    heroSection.style.backgroundImage = `radial-gradient(circle at 10% 20%, rgba(30, 41, 75, 0.3) 0%, rgba(11, 15, 25, 0.9) 90%), url('${appliedSrc}')`;
+                    const isLight = siteData.theme === "light";
+                    const overlay = isLight 
+                        ? "radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.8) 0%, rgba(244, 246, 250, 0.95) 90%)"
+                        : "radial-gradient(circle at 10% 20%, rgba(10, 31, 84, 0.3) 0%, rgba(2, 11, 33, 0.95) 90%)";
+                    heroSection.style.backgroundImage = `${overlay}, url('${appliedSrc}')`;
                 }
                 siteData.heroBgUrl = finalImageUrl;
             } else {
@@ -1696,8 +2326,11 @@ function openImageEditModal() {
 
     selectedImageFile = null;
     selectedGalleryImageUrl = null;
+    selectedVideoFile = null;
+    selectedGalleryVideoUrl = null;
 
     renderImageGalleryGrid();
+    renderVideoGalleryGrid();
 
     modalOverlay.classList.add("show");
 }
@@ -1739,6 +2372,40 @@ function applySectionVisibility() {
                 element.classList.remove("section-hidden");
             }
         }
+    }
+
+    // Hero buttons visibility based on their respective sections
+    const btnPrices = document.getElementById("hero-btn-prices");
+    if (btnPrices) {
+        if (sv.prices === false) btnPrices.style.display = "none";
+        else btnPrices.style.display = "";
+    }
+
+    const btnCalc = document.getElementById("hero-btn-calc");
+    if (btnCalc) {
+        if (sv.calculator === false) btnCalc.style.display = "none";
+        else btnCalc.style.display = "";
+    }
+
+    // Center hero content when Quick Rates widget is hidden
+    const heroGrid = document.querySelector(".hero-grid");
+    const heroContent = document.querySelector(".hero-content");
+    const heroButtons = document.querySelector(".hero-buttons");
+    const heroStats = document.querySelector(".hero-stats");
+    const heroTagline = document.getElementById("hero-tagline");
+    
+    if (sv.quickRates === false) {
+        if (heroGrid) heroGrid.style.gridTemplateColumns = "1fr";
+        if (heroContent) heroContent.style.textAlign = "center";
+        if (heroButtons) heroButtons.style.justifyContent = "center";
+        if (heroStats) heroStats.style.justifyContent = "center";
+        if (heroTagline) heroTagline.style.margin = "0 auto 35px auto";
+    } else {
+        if (heroGrid) heroGrid.style.gridTemplateColumns = "";
+        if (heroContent) heroContent.style.textAlign = "";
+        if (heroButtons) heroButtons.style.justifyContent = "";
+        if (heroStats) heroStats.style.justifyContent = "";
+        if (heroTagline) heroTagline.style.margin = "";
     }
 }
 
@@ -1923,10 +2590,20 @@ function bindIconModalEvents() {
 
     if (applyBtn) {
         applyBtn.addEventListener("click", () => {
+            const customInput = document.getElementById("modal-icon-custom-class");
+            if (customInput && customInput.value.trim()) {
+                let typedVal = customInput.value.trim().toLowerCase();
+                typedVal = typedVal.replace(/^fa-solid\s+|^fa-regular\s+|^fa-brands\s+|^fa-\s+/, "");
+                if (!typedVal.startsWith("fa-")) {
+                    typedVal = "fa-" + typedVal;
+                }
+                selectedIconClass = typedVal;
+            }
+
             if (activeTargetIconNode && selectedIconClass) {
                 const classList = [...activeTargetIconNode.classList];
                 classList.forEach(cls => {
-                    if (cls.startsWith("fa-") && cls !== "fa-solid" && cls !== "fa-regular") {
+                    if (cls.startsWith("fa-") && cls !== "fa-solid" && cls !== "fa-regular" && cls !== "fa-brands") {
                         activeTargetIconNode.classList.remove(cls);
                     }
                 });
@@ -1939,6 +2616,12 @@ function bindIconModalEvents() {
                     if (serviceItem) serviceItem.icon = selectedIconClass;
                 }
 
+                const fuelId = activeTargetIconNode.getAttribute("data-fuel-icon-id");
+                if (fuelId && Array.isArray(siteData.fuels)) {
+                    const fuelItem = siteData.fuels.find(f => f.id === fuelId);
+                    if (fuelItem) fuelItem.icon = selectedIconClass;
+                }
+
                 scrapeAndSaveWysiwygDOM(false);
                 showWysiwygToast("Icon updated successfully! Click 'Save Draft' to finalize.", "success");
             }
@@ -1948,11 +2631,53 @@ function bindIconModalEvents() {
 }
 
 window.openIconPickerModal = function (iconElement) {
-    activeTargetIconNode = iconElement;
-    renderIconPickerGrid();
-    const modalOverlay = document.getElementById("wysiwyg-icon-modal-overlay");
-    if (modalOverlay) {
-        modalOverlay.classList.add("show");
+    let currentClass = "";
+    if (iconElement) {
+        iconElement.classList.forEach(cls => {
+            if (cls.startsWith("fa-") && cls !== "fa-solid" && cls !== "fa-regular" && cls !== "fa-brands") {
+                currentClass = cls.replace("fa-", "");
+            }
+        });
+    }
+
+    const userInput = prompt("Enter icon name (e.g., user, lock, star, car, truck):", currentClass);
+    
+    if (userInput !== null && userInput.trim() !== "") {
+        let typedVal = userInput.trim().toLowerCase();
+        typedVal = typedVal.replace(/^fa-solid\s+|^fa-regular\s+|^fa-brands\s+|^fa-\s+/, "");
+        if (!typedVal.startsWith("fa-")) {
+            typedVal = "fa-" + typedVal;
+        }
+
+        const classList = [...iconElement.classList];
+        classList.forEach(cls => {
+            if (cls.startsWith("fa-") && cls !== "fa-solid" && cls !== "fa-regular" && cls !== "fa-brands") {
+                iconElement.classList.remove(cls);
+            }
+        });
+
+        iconElement.classList.add(typedVal);
+
+        const serviceId = iconElement.getAttribute("data-service-icon-id");
+        if (serviceId && Array.isArray(siteData.services)) {
+            const serviceItem = siteData.services.find(s => s.id === serviceId);
+            if (serviceItem) serviceItem.icon = typedVal;
+        }
+
+        const fuelId = iconElement.getAttribute("data-fuel-icon-id");
+        if (fuelId && Array.isArray(siteData.fuels)) {
+            const fuelItem = siteData.fuels.find(f => f.id === fuelId);
+            if (fuelItem) fuelItem.icon = typedVal;
+        }
+
+        const genericIconId = iconElement.getAttribute("data-icon-id");
+        if (genericIconId && !serviceId && !fuelId) {
+            if (!siteData.customIcons) siteData.customIcons = {};
+            siteData.customIcons[genericIconId] = typedVal;
+        }
+
+        scrapeAndSaveWysiwygDOM(false);
+        showWysiwygToast("Icon updated successfully! Click 'Save Draft' to finalize.", "success");
     }
 };
 
@@ -2331,6 +3056,9 @@ function processLoadedData(data) {
     
     if (data.testimonials) data.testimonials = JSON.parse(JSON.stringify(data.testimonials));
     else data.testimonials = [];
+
+    if (data.legacyItems) data.legacyItems = JSON.parse(JSON.stringify(data.legacyItems));
+    else data.legacyItems = JSON.parse(JSON.stringify(BASELINE_DEFAULT_DATA.legacyItems));
     
     // Merge hidden fuels
     if (Array.isArray(data.hiddenFuels)) {
@@ -2360,7 +3088,40 @@ function processLoadedData(data) {
         // Since testimonials don't have unique IDs, we just append them to the testimonials array
         data.testimonials = [...data.testimonials, ...data.hiddenTestimonials];
     }
+
+    // Merge hidden legacy items
+    if (Array.isArray(data.hiddenLegacyItems)) {
+        data.hiddenLegacyItems.forEach(item => { item.hidden = true; });
+        const legacyIds = new Set(data.legacyItems.map(item => item.id));
+        data.hiddenLegacyItems.forEach(item => {
+            if (!legacyIds.has(item.id)) {
+                data.legacyItems.push(item);
+            }
+        });
+    }
     
+    // Merge baseline availableImages if missing from loaded data
+    if (!data.availableImages) {
+        data.availableImages = JSON.parse(JSON.stringify(BASELINE_DEFAULT_DATA.availableImages));
+    } else {
+        BASELINE_DEFAULT_DATA.availableImages.forEach(img => {
+            if (!data.availableImages.includes(img)) {
+                data.availableImages.push(img);
+            }
+        });
+    }
+
+    // Merge baseline availableVideos if missing from loaded data
+    if (!data.availableVideos) {
+        data.availableVideos = JSON.parse(JSON.stringify(BASELINE_DEFAULT_DATA.availableVideos));
+    } else {
+        BASELINE_DEFAULT_DATA.availableVideos.forEach(vid => {
+            if (!data.availableVideos.includes(vid)) {
+                data.availableVideos.push(vid);
+            }
+        });
+    }
+
     return data;
 }
 
@@ -2371,6 +3132,7 @@ function prepareDataForSave(data) {
     if (!copy.fuels) copy.fuels = [];
     if (!copy.services) copy.services = [];
     if (!copy.testimonials) copy.testimonials = [];
+    if (!copy.legacyItems) copy.legacyItems = [];
     
     copy.hiddenFuels = copy.fuels.filter(f => f.hidden === true);
     copy.fuels = copy.fuels.filter(f => !f.hidden);
@@ -2385,6 +3147,30 @@ function prepareDataForSave(data) {
     copy.hiddenTestimonials = copy.testimonials.filter(t => t.hidden === true);
     copy.testimonials = copy.testimonials.filter(t => !t.hidden);
     copy.hiddenTestimonials.forEach(t => { delete t.hidden; });
+
+    copy.hiddenLegacyItems = copy.legacyItems.filter(item => item.hidden === true);
+    copy.legacyItems = copy.legacyItems.filter(item => !item.hidden);
+    copy.hiddenLegacyItems.forEach(item => { delete item.hidden; });
     
     return copy;
+}
+
+function applySavedTheme() {
+    if (!siteData) return;
+    const isLight = siteData.theme === "light";
+    if (isLight) {
+        document.body.classList.add("light-theme");
+    } else {
+        document.body.classList.remove("light-theme");
+    }
+    
+    // If the edit mode theme toggle button is present on the page, update its icon/text
+    const themeBtn = document.getElementById("wysiwyg-theme-btn");
+    if (themeBtn) {
+        if (isLight) {
+            themeBtn.innerHTML = `<i class="fa-solid fa-sun"></i> Toggle Dark`;
+        } else {
+            themeBtn.innerHTML = `<i class="fa-solid fa-moon"></i> Toggle Light`;
+        }
+    }
 }
