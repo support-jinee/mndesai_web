@@ -1,14 +1,14 @@
 {
   "stationName": "M N Desai Petrol Pump",
-  "tagline": "",
+  "tagline": "Serving India's roads with trust and dedication since 1961. At M.N. Desai Indian Oil, we deliver 100% pure fuel with every litre measured right — because your journey deserves nothing less than the best.",
   "announcement": "Welcome to M.N. Desai Petrol Pump - Quality and Quantity are our daily promise! Check density live at our dispensing units.",
-  "heroTitle": "M N Desai\nPure Fuel, Pure Commitment.",
-  "heroBgUrl": "images/10.png?v=1779195236784?v=1779195919187?v=1779197392156?v=1779197414072?v=1779197502237?v=1779197516148?v=1779210827759?v=1779212186733?v=1779212309946?v=1779213211064?v=1779213348250",
+  "heroTitle": "Welcome to,\nM.N. Desai Petrol Pump \nWith Pure Fuel & Pure Commitment.",
+  "heroBgUrl": "images/10.png?v=1779350776973?v=1779350821904?v=1779351071105?v=1779351111672?v=1779351797699?v=1779352129946?v=1779352193786?v=1779352292815?v=1779352694014?v=1779356438775?v=1779356546665",
   "heroStats": {
     "experienceVal": "12+",
     "experienceLabel": "YEARS LEGACY",
-    "customersVal": "500M+",
-    "customersLabel": "HAPPY CLINTES",
+    "customersVal": "500K+",
+    "customersLabel": "HAPPY CUSTOMER",
     "densityVal": "Daily",
     "densityLabel": "AUTOMATED TESTS"
   },
@@ -46,11 +46,11 @@
     "calc": "Estimate Your Journey Expenses",
     "calcSubtitle": "FUEL CALCULATOR",
     "calcDesc": "Enter your travel parameters below to calculate precise fuel requirement and projected trip costs instantly based on our live rates.",
-    "services": "Premium Station Amenities",
+    "services": "More Than a Fuel Stop",
     "servicesSubtitle": "WHY CHOOSE US",
-    "servicesDesc": "We offer more than just premium fuels. Experience a comprehensive range of quality convenience services designed to refresh both you and your vehicle.",
+    "servicesDesc": "At M.N. Desai Indian Oil, we believe every visit should add value. From pollution checks to exclusive reward points, we offer services that go beyond the pump — because our customers deserve more than just fuel.",
     "trustSubtitle": "Trust & Integrity",
-    "aboutSubtitle": "Our Legacy",
+    "aboutSubtitle": "About",
     "testimonials": "What Drivers Say About Us",
     "testimonialsSubtitle": "CLIENT REVIEWS",
     "testimonialsDesc": "Customer satisfaction is our ultimate reward. Read reviews from everyday highway travelers and fleet owners.",
@@ -73,11 +73,11 @@
     }
   ],
   "about": {
-    "title": "About M.N. Desai Petrol Pump",
+    "title": "IndianOil Petrol Pump (M.N. Desai)",
     "description": "M N Desai company was established in 1961. During that time one can hardly find a petrol pump on road. M N Desai was dealing in Crude Oil during 1960s. M N Desai was the Petrol Pump between Ahmedabad Bagodra Road during 1970s and 1980s.",
     "experienceYears": 65,
     "experienceYearsLabel": "YEARS TRUST",
-    "customersServed": "500M+",
+    "customersServed": "500K+",
     "pureFuelCheck": "Daily automated density tests and manual filter paper check options are available to every customer on request.",
     "imageUrl": "images/01.png"
   },
@@ -96,45 +96,51 @@
       "id": "puc_services",
       "icon": "fa-file-invoice",
       "title": "PUC and PUC Renewals",
-      "desc": "Calibrated exhaust testing equipment and instant government pollution certificate registration bays."
+      "desc": "Stay road-legal without the hassle. Get your pollution certificate tested and renewed on the spot with our government-approved calibrated equipment — fast, accurate, and reliable."
     },
     {
       "id": "electric_recharge",
       "icon": "fa-bolt",
       "title": "Electric Recharging",
-      "desc": "High-voltage DC fast charging stations supporting quick power-ups for modern electric cars and fleets."
+      "desc": "The future is electric and we are ready. Our high-speed DC fast charging stations power up your EV quickly and safely, so you are back on the road in no time."
     },
     {
       "id": "ioc_rewards",
       "icon": "fa-award",
       "title": "IOC Rewards Points",
-      "desc": "Earn and redeem loyalty membership benefits on every nozzle transaction at our station."
+      "desc": "Every litre you fill earns you more. Collect and redeem Indian Oil loyalty reward points on every transaction at our station — a little something back for your trust."
     },
     {
       "id": "special_rewards",
       "icon": "fa-star",
       "title": "Additional Special Rewards Point",
-      "desc": "Exclusive client tier cashback cards, corporate tie-ups, and special seasonal fuel bonuses."
+      "desc": "We like to go the extra mile. Over and above IOC rewards, M.N. Desai offers exclusive special reward points to our valued customers — because loyalty deserves to be celebrated"
     }
   ],
   "contact": {
-    "phone": "+91 98765 43210",
-    "email": "contact@mndesai.in",
+    "phone": "+91 88666 25756",
+    "email": "mndesai.changodar@gmail.com",
     "address": "IndianOil Petrol Pump (M.N. Desai), Sarkhej-Bavla Road, Changodar, Ahmedabad, Gujarat - 382213",
     "hours": "Open 24 Hours, 7 Days a week",
     "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.630043883011!2d72.4411132!3d22.9208035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e91b2bcdae9b9%3A0xb13c79120ed549c4!2sIndianOil!5e0!3m2!1sen!2sin!4v1715830000000!5m2!1sen!2sin"
   },
   "testimonials": [
     {
-      "name": "Rajesh Patel",
-      "role": "Commercial Fleet Owner",
-      "text": "I always instruct my drivers to fill at M.N. Desai on Changodar highway. Their automated billing and consistent quality give us the best mileage.",
+      "name": "Shiva Pinto",
+      "role": "",
+      "text": "Best Indian Oil petrol pump i m seeing this pump since 28 years Still serving with great interest❤️🤩",
       "rating": 5
     },
     {
-      "name": "Heera Shah",
-      "role": "Daily Commuter",
-      "text": "Their staff is extremely courteous and quick. Checking fuel density on their digital indicators gives me absolute peace of mind.",
+      "name": "Panth Gandhi",
+      "role": "",
+      "text": "Electric charging available so very useful for me as i have long travel route from this changodar road only.",
+      "rating": 5
+    },
+    {
+      "name": "Dhvanish Solanki",
+      "role": "",
+      "text": "So good and reliable.",
       "rating": 5
     }
   ],
@@ -184,7 +190,7 @@
     },
     {
       "id": "nav-services",
-      "text": "Our Services",
+      "text": "Services",
       "link": "#services"
     },
     {
@@ -225,28 +231,39 @@
     {
       "id": "legacy_1",
       "year": "",
-      "title": "Establishment of M.N. Desai",
-      "desc": "M N Desai company was established in 1961. During that time one can hardly find a petrol pump on road. We started with a strong vision of serving pure fuels.",
+      "title": "M.N. Desai Indian Oil",
+      "desc": "M N Desai petrol pump was established in 1961. During that time one can hardly find a petrol pump on road. We started with a strong vision of serving pure fuels.",
       "mediaType": "image",
       "mediaUrl": "images/01.png"
     },
     {
       "id": "legacy_2",
       "year": "",
-      "title": "Crude Oil Dealings",
-      "desc": "M N Desai was dealing in Crude Oil distribution during 1960s, laying down the logistical foundation of our energy commitment.",
+      "title": "Fuel at Your Doorstep",
+      "desc": "M.N. Desai Indian Oil brings certified diesel directly to your location — no detours, no delays. Whether it's your fleet, your site, or your doorstep, we deliver quality fuel you can trust, right when you need it.",
       "mediaType": "image",
       "mediaUrl": "images/11.png"
     },
     {
       "id": "legacy_3",
       "year": "",
-      "title": "Highway Network Growth",
-      "desc": "M N Desai was the Petrol Pump between Ahmedabad Bagodra Road during 1970s and 1980s, catering to major highway transport networks.",
+      "title": "Fuel & Fix on the Go",
+      "desc": "Stuck on the road? We've got you. M.N. Desai's mobile unit reaches you wherever you are — fuel in the tank, help on the spot.",
       "mediaType": "video",
       "mediaUrl": "videos/01.mp4"
+    },
+    {
+      "id": "legacy_1779350790474",
+      "year": "",
+      "title": "Midnight Run, Full Tank",
+      "desc": "When the world sleeps, our drivers keep moving. Every night stop at the pump is a promise kept — to the road, to the load, and to the people waiting at the other end.",
+      "mediaType": "image",
+      "mediaUrl": "images/03.png"
     }
   ],
   "hiddenLegacyItems": [],
-  "theme": "dark"
+  "theme": "dark",
+  "customIcons": {
+    "static-icon-19": "fa-xmark"
+  }
 }

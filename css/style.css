@@ -1926,7 +1926,7 @@ body.wysiwyg-edit-mode-active .wysiwyg-editable-element:focus {
     position: fixed;
     bottom: 25px;
     left: 50%;
-    transform: translateX(-50%) translateY(150px);
+    transform: translateX(-50%) translateY(calc(100% + 60px));
     width: calc(100% - 40px);
     max-width: 850px;
     background: rgba(19, 28, 49, 0.85);
@@ -2513,8 +2513,8 @@ body.wysiwyg-edit-mode-active .nav-link-hidden {
     z-index: 20;
 }
 
-.glass-panel:hover .item-edit-controls,
-.glass-panel:focus-within .item-edit-controls {
+body.wysiwyg-edit-mode-active .glass-panel:hover .item-edit-controls,
+body.wysiwyg-edit-mode-active .glass-panel:focus-within .item-edit-controls {
     display: flex;
 }
 
@@ -2714,7 +2714,7 @@ body.wysiwyg-edit-mode-active .nav-link-hidden {
         bottom: 10px;
         width: calc(100% - 20px);
         padding: 15px;
-        transform: translateX(-50%) translateY(200px);
+        transform: translateX(-50%) translateY(calc(100% + 60px));
     }
     
     .wysiwyg-floating-control-dock.slide-up-active {
