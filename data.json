@@ -3,7 +3,7 @@
   "tagline": "Serving India's roads with trust and dedication since 1961. At M.N. Desai Indian Oil, we deliver 100% pure fuel with every litre measured right — because your journey deserves nothing less than the best.",
   "announcement": "Welcome to M.N. Desai Petrol Pump - Quality and Quantity are our daily promise! Check density live at our dispensing units.",
   "heroTitle": "Welcome to,\nM.N. Desai Petrol Pump \nWith Pure Fuel & Pure Commitment.",
-  "heroBgUrl": "images/10.png?v=1779350776973?v=1779350821904?v=1779351071105?v=1779351111672?v=1779351797699?v=1779352129946?v=1779352193786?v=1779352292815?v=1779352694014?v=1779356438775?v=1779356546665",
+  "heroBgUrl": "images/10.png?v=1779350776973?v=1779350821904?v=1779351071105?v=1779351111672?v=1779351797699?v=1779352129946?v=1779352193786?v=1779352292815?v=1779352694014?v=1779356438775?v=1779356546665?v=1780999030490",
   "heroStats": {
     "experienceVal": "12+",
     "experienceLabel": "YEARS LEGACY",
@@ -118,11 +118,25 @@
     }
   ],
   "contact": {
-    "phone": "+91 88666 25756",
+    "phone": "+91 96625 00116",
     "email": "mndesai.changodar@gmail.com",
     "address": "IndianOil Petrol Pump (M.N. Desai), Sarkhej-Bavla Road, Changodar, Ahmedabad, Gujarat - 382213",
     "hours": "Open 24 Hours, 7 Days a week",
-    "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.630043883011!2d72.4411132!3d22.9208035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e91b2bcdae9b9%3A0xb13c79120ed549c4!2sIndianOil!5e0!3m2!1sen!2sin!4v1715830000000!5m2!1sen!2sin"
+    "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.630043883011!2d72.4411132!3d22.9208035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e91b2bcdae9b9%3A0xb13c79120ed549c4!2sIndianOil!5e0!3m2!1sen!2sin!4v1715830000000!5m2!1sen!2sin",
+    "locations": [
+      {
+        "id": "loc_changodar",
+        "name": "Changodar Station — Sarkhej-Bavla Road",
+        "address": "IndianOil Petrol Pump (M.N. Desai), Sarkhej-Bavla Road, Changodar, Ahmedabad, Gujarat - 382213",
+        "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.630043883011!2d72.4411132!3d22.9208035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e91b2bcdae9b9%3A0xb13c79120ed549c4!2sIndianOil!5e0!3m2!1sen!2sin!4v1715830000000!5m2!1sen!2sin"
+      },
+      {
+        "id": "loc_makwa",
+        "name": "Makwa Station — Baroda–Ahmedabad Expressway",
+        "address": "Mn Desai At Post Makwa, Tal, near Ahmedabad - Vadodara Expressway, Mehmedabad, Kheda, Gujarat 387130",
+        "mapsUrl": "https://maps.google.com/maps?q=Mn+Desai+Makwa+Ahmedabad+Vadodara+Expressway+Mehmedabad+Kheda+Gujarat&t=&z=15&ie=UTF8&iwloc=&output=embed"
+      }
+    ]
   },
   "testimonials": [
     {
@@ -202,6 +216,12 @@
       "id": "nav-contact",
       "text": "Contact",
       "link": "#contact"
+    },
+    {
+      "id": "nav-rates",
+      "text": "Rates",
+      "link": "rate.html",
+      "icon": "fa-solid fa-chart-line"
     }
   ],
   "sectionVisibility": {

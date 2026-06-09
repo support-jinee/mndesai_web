@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rate Board - M/s. M. N. Desai</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html, body {
+            width: 100%; height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            background: radial-gradient(circle at 10% 20%, #0a1f54 0%, #020b21 90%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .board {
+            background: #ffffff;
+            border: clamp(3px, 0.6vw, 8px) solid #7ab0c8;
+            border-radius: clamp(4px, 0.6vw, 10px);
+            width: 97vw;
+            height: 97vh;
+            padding: clamp(6px, 1vh, 16px) clamp(8px, 1.5vw, 24px);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* ── HEADER ── */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: clamp(6px, 1.2vw, 20px);
+            border-bottom: clamp(1px, 0.25vh, 3px) solid #00308f;
+            padding-bottom: clamp(4px, 0.7vh, 10px);
+            flex-shrink: 0;
+        }
+
+        .logo-wrap {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-img {
+            height: clamp(38px, 6.5vw, 85px);
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* fallback CSS logo if image missing */
+        .logo-circle {
+            width: clamp(38px, 5.5vw, 76px);
+            height: clamp(38px, 5.5vw, 76px);
+            border-radius: 50%;
+            border: clamp(2px, 0.3vw, 3px) solid #00308f;
+            background: linear-gradient(to bottom, #cc2200 50%, #e05000 100%);
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; position: relative;
+        }
+        .logo-circle::after {
+            content: ''; position: absolute;
+            left: 0; right: 0; top: 50%; bottom: 0;
+            background: #cc4400;
+        }
+        .logo-text-hindi {
+            position: relative; z-index: 1;
+            color: #fff; font-size: clamp(6px, 0.9vw, 12px);
+            font-weight: bold; text-align: center; line-height: 1.2;
+        }
+        .logo-name {
+            font-size: clamp(6px, 0.9vw, 12px);
+            font-weight: bold; color: #00308f; margin-top: 3px; text-align: center;
+        }
+
+        .header-info { flex: 1; text-align: center; }
+
+        .company-name {
+            font-size: clamp(16px, 3.2vw, 46px);
+            font-weight: 900; color: #f37022;
+            letter-spacing: 1px; line-height: 1.1;
+        }
+        .address {
+            font-size: clamp(8px, 1.1vw, 17px);
+            font-weight: bold; color: #00308f; margin-top: 1px;
+        }
+        .gst-line {
+            font-size: clamp(7px, 0.95vw, 14px);
+            font-weight: bold; color: #f37022; margin-top: 1px;
+        }
+        .license-rsl {
+            font-size: clamp(6px, 0.88vw, 13px);
+            font-weight: bold; color: #f37022; margin-top: 1px;
+        }
+
+        /* ── TITLE & DATE ── */
+        .board-title {
+            text-align: center;
+            font-size: clamp(12px, 2.2vw, 32px);
+            font-weight: 900; color: #00308f;
+            text-decoration: underline; text-underline-offset: 3px;
+            margin: clamp(3px, 0.5vh, 7px) 0 clamp(2px, 0.4vh, 5px);
+            letter-spacing: 1px;
+            flex-shrink: 0;
+        }
+
+        .date-row {
+            text-align: right;
+            font-size: clamp(9px, 1.4vw, 20px);
+            font-weight: bold; color: #00308f;
+            margin-bottom: clamp(3px, 0.5vh, 4px);
+            flex-shrink: 0;
+        }
+
+        /* ── TABLE WRAPPER ── */
+        #table-container {
+            flex: 1;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        .stock-table {
+            width: 100%;
+            height: 100%;
+            border-collapse: collapse;
+            border: clamp(2px, 0.3vw, 4px) solid #00308f;
+            table-layout: fixed;
+        }
+
+        .stock-table th, .stock-table td {
+            border: clamp(1px, 0.2vw, 2px) solid #00308f;
+            text-align: center;
+            vertical-align: middle;
+            overflow: hidden;
+            padding: clamp(2px, 0.4vh, 8px) clamp(3px, 0.6vw, 10px);
+        }
+
+        .stock-table col:nth-child(1) { width: 22%; }
+        .stock-table col:nth-child(2) { width: 18%; }
+        .stock-table col:nth-child(3) { width: 18%; }
+        .stock-table col:nth-child(4) { width: 42%; }
+
+        .stock-table thead th {
+            background: #ffffff; color: #f37022;
+            font-weight: 900; text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .stock-table tbody td {
+            color: #00308f;
+            font-weight: 900;
+        }
+
+        .stock-table tbody td:first-child {
+            text-align: left;
+            padding-left: clamp(6px, 1.2vw, 18px);
+        }
+
+        .density-cell {
+            text-align: left;
+            padding-left: clamp(6px, 1.2vw, 18px);
+            line-height: 1.4;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            display: flex; justify-content: space-around;
+            background: #f37022;
+            margin-top: clamp(3px, 0.5vh, 8px);
+            padding: clamp(4px, 0.7vh, 10px) 8px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        .footer span {
+            color: #ffffff;
+            font-size: clamp(10px, 1.7vw, 26px);
+            font-weight: 900; letter-spacing: 1px;
+        }
+
+        .status-msg { text-align: center; color: #888; font-size: clamp(11px, 1.5vw, 20px); padding: 20px 0; }
+        .error-msg  { text-align: center; color: #f37022; font-size: clamp(10px, 1.2vw, 16px); padding: 16px 0; font-weight: bold; line-height: 2; }
+    </style>
+</head>
+<body>
+
+<div class="board">
+
+    <div class="header">
+        <div class="logo-wrap">
+            <img src="images/rateslogo.svg" alt="IndianOil Logo" class="logo-img">
+        </div>
+        <div class="header-info">
+            <div class="company-name">M/s. M. N. DESAI</div>
+            <div class="address">At - Changodar, Ta. - Sanand, Dist. - Ahmedabad.</div>
+            <div class="gst-line">GST No. - 24AAGFM3268A1ZO &nbsp;/&nbsp; VAT NO. - 24074500587</div>
+            <div class="license-rsl">Explosive License No. - P/WC/GJ/14/2798 (P27138) &nbsp;&nbsp;&nbsp; RSL NO. - 40/81</div>
+        </div>
+    </div>
+
+    <div class="board-title">STOCK BOARD</div>
+    <div class="date-row">DATE :- <span id="display-date">—</span></div>
+
+    <div id="table-container">
+        <div class="status-msg">Loading stock data…</div>
+    </div>
+
+    <div class="footer">
+        <span>POLICE - 100</span>
+        <span>FIRE - 101</span>
+        <span>AMBULANCE - 108</span>
+    </div>
+
+</div>
+
+<script>
+    // const API_URL = 'http://192.168.0.135:8081/api/Master/stockRate'; // Jinee url
+    const API_URL = 'http://192.168.0.150:8081/api/Master/stockRate'; // MNDesai url
+
+    async function fetchAndRender() {
+        try {
+            const res = await fetch(API_URL, { method: 'GET' });
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            const json = await res.json();
+            renderBoard(json);
+        } catch (err) {
+            document.getElementById('display-date').textContent = today();
+            document.getElementById('table-container').innerHTML =
+                '<div class="error-msg">' +
+                '&#10060; Failed to load data: ' + err.message + '<br>' +
+                'Enable CORS on ASP.NET Core: ' +
+                '<code style="font-size:0.85em;background:#f5f5f5;padding:2px 8px;border-radius:4px;">' +
+                'app.UseCors(p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());</code>' +
+                '</div>';
+        }
+    }
+
+    function renderBoard(json) {
+        const rawDate = json.data && json.data[0] && json.data[0].MaxDt;
+        document.getElementById('display-date').textContent = rawDate ? formatDate(rawDate) : today();
+
+        /* density map: ICODE → ["TNAME — 824.8", ...], skip zero */
+        const densityMap = {};
+        (json.density || []).forEach(function(item) {
+            if (!item.Density || item.Density === 0) return;
+            if (!densityMap[item.ICODE]) densityMap[item.ICODE] = [];
+            densityMap[item.ICODE].push(item.TNAME.trim() + ' &mdash; ' + item.Density.toFixed(1));
+        });
+
+        /* sort by prefix number in INAME */
+        const sorted = (json.data || []).slice().sort(function(a, b) {
+            return prefixNum(a.INAME) - prefixNum(b.INAME);
+        });
+
+        const rowCount = sorted.length;
+
+        const rows = sorted.map(function(item) {
+            const name      = item.DisplayName ? item.DisplayName.trim().toUpperCase() : cleanName(item.INAME);
+            const stock     = (item.Stock != null && item.Stock > 0)
+                              ? Math.round(item.Stock).toLocaleString('en-IN') : '&mdash;';
+            const rate      = item.Rate != null ? item.Rate.toFixed(2) : '&mdash;';
+            const densities = (densityMap[item.ICODE] || []).join('<br>') || '&mdash;';
+            return '<tr>' +
+                '<td>' + name + '</td>' +
+                '<td>' + stock + '</td>' +
+                '<td>' + rate + '</td>' +
+                '<td class="density-cell">' + densities + '</td>' +
+                '</tr>';
+        }).join('');
+
+        document.getElementById('table-container').innerHTML =
+            '<table class="stock-table" id="stock-table">' +
+            '<colgroup><col><col><col><col></colgroup>' +
+            '<thead><tr>' +
+            '<th>PRODUCT</th><th>STOCK</th><th>RATE (LTR)</th><th>DENSITY</th>' +
+            '</tr></thead>' +
+            '<tbody>' + rows + '</tbody>' +
+            '</table>';
+
+        /* Auto-fit font sizes based on row count & available height */
+        autoFitFonts(rowCount);
+    }
+
+    /*
+     * Dynamically calculate font sizes so that ALL rows fit perfectly
+     * inside the available table height — no scroll, no cut-off.
+     * Works for 1 row to 10+ rows.
+     */
+    function autoFitFonts(rowCount) {
+        const table = document.getElementById('stock-table');
+        if (!table) return;
+
+        const container  = document.getElementById('table-container');
+        const totalH     = container.clientHeight;   // available px height
+        const theadH     = table.tHead ? table.tHead.offsetHeight : 50;
+        const bodyH      = totalH - theadH;           // height for data rows
+        const rowH       = bodyH / rowCount;          // px per row
+
+        /*
+         * Base scale: rowH drives everything.
+         * These multipliers were tuned so text fills ~75% of each row
+         * and density lines (up to 5) still fit at smaller font.
+         */
+        const cellFs    = Math.max(9,  Math.min(rowH * 0.30, 36));  // product/stock/rate
+        const densityFs = Math.max(9,  Math.min(rowH * 0.20, 28));  // density lines
+        const headerFs  = Math.max(10, Math.min(totalH * 0.035, 28)); // thead
+
+        /* Apply to thead */
+        Array.from(table.tHead.rows[0].cells).forEach(function(th) {
+            th.style.fontSize = headerFs + 'px';
+        });
+
+        /* Apply to tbody */
+        Array.from(table.tBodies[0].rows).forEach(function(tr) {
+            Array.from(tr.cells).forEach(function(td, i) {
+                if (td.classList.contains('density-cell')) {
+                    td.style.fontSize = densityFs + 'px';
+                } else {
+                    td.style.fontSize = cellFs + 'px';
+                }
+            });
+        });
+    }
+
+    /* Re-fit on window resize */
+    window.addEventListener('resize', function() {
+        const table = document.getElementById('stock-table');
+        if (table) {
+            const rowCount = table.tBodies[0] ? table.tBodies[0].rows.length : 0;
+            if (rowCount > 0) autoFitFonts(rowCount);
+        }
+    });
+
+    function prefixNum(iname) {
+        const m = (iname || '').match(/^(\d+)/);
+        return m ? parseInt(m[1], 10) : 999;
+    }
+
+    function cleanName(iname) {
+        return (iname || '').replace(/^\d+-\s*/, '').replace(/\s+/g, ' ').trim().toUpperCase();
+    }
+
+    function formatDate(iso) {
+        const d  = new Date(iso);
+        const dd = String(d.getDate()).padStart(2, '0');
+        const mm = String(d.getMonth() + 1).padStart(2, '0');
+        const yy = String(d.getFullYear()).slice(-2);
+        return dd + '/' + mm + '/' + yy;
+    }
+
+    function today() { return formatDate(new Date()); }
+
+    fetchAndRender();
+    setInterval(fetchAndRender, 30000);
+</script>
+
+</body>
+</html>

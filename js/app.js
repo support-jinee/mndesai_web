@@ -95,7 +95,21 @@ const BASELINE_DEFAULT_DATA = {
         "email": "contact@mndesai.in",
         "address": "IndianOil Petrol Pump (M.N. Desai), Sarkhej-Bavla Road, Changodar, Ahmedabad, Gujarat - 382213",
         "hours": "Open 24 Hours, 7 Days a week",
-        "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.630043883011!2d72.4411132!3d22.9208035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e91b2bcdae9b9%3A0xb13c79120ed549c4!2sIndianOil!5e0!3m2!1sen!2sin!4v1715830000000!5m2!1sen!2sin"
+        "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.630043883011!2d72.4411132!3d22.9208035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e91b2bcdae9b9%3A0xb13c79120ed549c4!2sIndianOil!5e0!3m2!1sen!2sin!4v1715830000000!5m2!1sen!2sin",
+        "locations": [
+            {
+                "id": "loc_changodar",
+                "name": "Changodar Station (Sarkhej-Bavla Road)",
+                "address": "IndianOil Petrol Pump (M.N. Desai), Sarkhej-Bavla Road, Changodar, Ahmedabad, Gujarat - 382213",
+                "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.630043883011!2d72.4411132!3d22.9208035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e91b2bcdae9b9%3A0xb13c79120ed549c4!2sIndianOil!5e0!3m2!1sen!2sin!4v1715830000000!5m2!1sen!2sin"
+            },
+            {
+                "id": "loc_makwa",
+                "name": "Makwa Station — Baroda–Ahmedabad Expressway",
+                "address": "Mn Desai At Post Makwa, Tal, near Ahmedabad - Vadodara Expressway, Mehmedabad, Kheda, Gujarat 387130",
+                "mapsUrl": "https://maps.google.com/maps?q=Mn+Desai+Makwa+Ahmedabad+Vadodara+Expressway+Mehmedabad+Kheda+Gujarat&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            }
+        ]
     },
     "testimonials": [
         { "name": "Rajesh Patel", "role": "Commercial Fleet Owner", "text": "I always instruct my drivers to fill at M.N. Desai on Changodar highway. Their automated billing and consistent quality give us the best mileage.", "rating": 5 },
@@ -135,7 +149,8 @@ const BASELINE_DEFAULT_DATA = {
         { "id": "nav-calc", "text": "Fuel Calculator", "link": "#calculator" },
         { "id": "nav-services", "text": "Our Services", "link": "#services" },
         { "id": "nav-about", "text": "About", "link": "#about" },
-        { "id": "nav-contact", "text": "Contact", "link": "#contact" }
+        { "id": "nav-contact", "text": "Contact", "link": "#contact" },
+        { "id": "nav-rates", "text": "Rates", "link": "rate.html", "icon": "fa-solid fa-chart-line" }
     ],
     "sectionVisibility": {
         "hero": true,
@@ -239,10 +254,10 @@ function populateBrandingAndGeneral() {
     if (navUl && Array.isArray(siteData.navbar)) {
         navUl.innerHTML = "";
         const isEditMode = document.body.classList.contains("wysiwyg-edit-mode-active");
-
         siteData.navbar.forEach(item => {
-            const sectionKey = item.link.replace("#", "");
-            const isSectionHidden = siteData.sectionVisibility && siteData.sectionVisibility[sectionKey] === false;
+            const isHashLink = item.link && item.link.startsWith("#");
+            const sectionKey = isHashLink ? item.link.replace("#", "") : null;
+            const isSectionHidden = sectionKey && siteData.sectionVisibility && siteData.sectionVisibility[sectionKey] === false;
 
             if (!isEditMode && isSectionHidden) {
                 return;
@@ -252,7 +267,11 @@ function populateBrandingAndGeneral() {
             const a = document.createElement("a");
             a.href = item.link;
             a.id = item.id;
-            a.innerText = item.text;
+            if (item.icon) {
+                a.innerHTML = `<i class="${item.icon}"></i> ${item.text}`;
+            } else {
+                a.innerText = item.text;
+            }
             a.className = "nav-item-editable";
 
             if (isSectionHidden) {
@@ -1070,26 +1089,81 @@ function populateContactAndFooter() {
             addressText.innerText = contact.address;
         }
 
+        // --- Dynamic Location List with click-to-map feature ---
+        const locationsListEl = document.getElementById("contact-locations-list");
+        const mapFrame = document.getElementById("contact-map-iframe");
+        const mapLabel = document.getElementById("map-active-label-text");
+
+        if (locationsListEl && mapFrame) {
+            // Build locations from either contact.locations array or fallback to single mapsUrl
+            const locations = (contact.locations && Array.isArray(contact.locations) && contact.locations.length > 0)
+                ? contact.locations
+                : [{
+                    id: "loc_default",
+                    name: "Our Station",
+                    address: contact.address || "IndianOil Petrol Pump (M.N. Desai)",
+                    mapsUrl: contact.mapsUrl
+                }];
+
+            locationsListEl.innerHTML = "";
+
+            const switchMap = (loc, itemEl) => {
+                // Update iframe
+                if (loc.mapsUrl) {
+                    mapFrame.src = loc.mapsUrl;
+                }
+                // Update label
+                if (mapLabel) mapLabel.textContent = loc.name;
+
+                // Update active state on list items
+                locationsListEl.querySelectorAll(".location-item").forEach(el => el.classList.remove("active"));
+                if (itemEl) itemEl.classList.add("active");
+
+                // Pulse animation on map wrapper
+                const mapWrapper = document.getElementById("map-outer-wrapper");
+                if (mapWrapper) {
+                    mapWrapper.classList.add("map-updating");
+                    setTimeout(() => mapWrapper.classList.remove("map-updating"), 600);
+                }
+            };
+
+            locations.forEach((loc, idx) => {
+                const item = document.createElement("div");
+                item.className = "location-item" + (idx === 0 ? " active" : "");
+                item.setAttribute("data-loc-id", loc.id || idx);
+                item.innerHTML = `
+                    <div class="location-item-body">
+                        <div class="location-item-info">
+                            <span class="location-item-name"><i class="fa-solid fa-map-pin"></i> ${loc.name}</span>
+                            <span class="location-item-addr">${loc.address}</span>
+                        </div>
+                        <a class="location-navigate-btn" href="https://maps.google.com/?q=${encodeURIComponent(loc.address)}" target="_blank" rel="noopener" title="Open in Google Maps">
+                            <i class="fa-solid fa-diamond-turn-right"></i>
+                        </a>
+                    </div>
+                `;
+
+                item.addEventListener("click", (e) => {
+                    // Don't interfere with navigate button
+                    if (e.target.closest(".location-navigate-btn")) return;
+                    switchMap(loc, item);
+                });
+
+                locationsListEl.appendChild(item);
+            });
+
+            // Set map to first location by default
+            if (locations[0] && locations[0].mapsUrl) {
+                mapFrame.src = locations[0].mapsUrl;
+                if (mapLabel) mapLabel.textContent = locations[0].name;
+            } else if (contact.mapsUrl) {
+                mapFrame.src = contact.mapsUrl;
+            }
+        }
+
         const hoursText = document.getElementById("contact-hours");
         if (hoursText && contact.hours) {
             hoursText.innerText = contact.hours;
-        }
-
-        const mapFrame = document.getElementById("contact-map-iframe");
-        if (mapFrame && contact.mapsUrl) {
-            if (contact.mapsUrl.startsWith("https://www.google.com/maps/embed") || contact.mapsUrl.includes("maps/embed")) {
-                mapFrame.src = contact.mapsUrl;
-            } else {
-                let query = "";
-                if (contact.mapsUrl.includes("q=")) {
-                    const match = contact.mapsUrl.match(/q=([^&]+)/);
-                    query = match ? match[1] : "";
-                }
-                if (!query) {
-                    query = encodeURIComponent(contact.address || "IndianOil Petrol Pump Changodar Ahmedabad");
-                }
-                mapFrame.src = `https://maps.google.com/maps?q=${query}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
-            }
         }
     }
 
@@ -3118,6 +3192,18 @@ function processLoadedData(data) {
         BASELINE_DEFAULT_DATA.availableVideos.forEach(vid => {
             if (!data.availableVideos.includes(vid)) {
                 data.availableVideos.push(vid);
+            }
+        });
+    }
+
+    // Merge baseline navbar items if missing from loaded data
+    if (!data.navbar) {
+        data.navbar = JSON.parse(JSON.stringify(BASELINE_DEFAULT_DATA.navbar));
+    } else {
+        const navIds = new Set(data.navbar.map(n => n.id));
+        BASELINE_DEFAULT_DATA.navbar.forEach(item => {
+            if (!navIds.has(item.id)) {
+                data.navbar.push(JSON.parse(JSON.stringify(item)));
             }
         });
     }

@@ -17,7 +17,7 @@
     <meta name="author" content="M.N. Desai">
 
 
-    <link rel="stylesheet" href="css/style.css?v=6.1">
+    <link rel="stylesheet" href="css/style.css?v=6.3">
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -47,12 +47,13 @@
                     <li><a href="#services">Our Services</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li><a href="rate.html"></i> Rates</a></li>
                 </ul>
             </nav>
 
             <div class="nav-cta">
                 <a href="#contact" class="btn btn-secondary">Get Directions</a>
-                <a href="tel:+919876543210" class="btn btn-primary" id="header-phone-btn"><i class="fa-solid fa-phone"
+                <a href="tel:+919662500116" class="btn btn-primary" id="header-phone-btn"><i class="fa-solid fa-phone"
                         data-icon-id="static-icon-1"></i> Call Now</a>
             </div>
 
@@ -332,19 +333,21 @@
 
             <div class="contact-grid">
                 <div class="contact-info-cards">
-                    <div class="glass-panel contact-panel-card">
+                    <!-- Location List (dynamic) -->
+                    <div class="glass-panel contact-panel-card" id="location-list-card">
                         <i class="fa-solid fa-location-dot" data-icon-id="static-icon-11"></i>
-                        <div>
-                            <h4>Our Address</h4>
-                            <p id="contact-address">IndianOil Petrol Pump (M.N. Desai), Sarkhej-Bavla Road, Changodar,
-                                Ahmedabad, Gujarat - 382213</p>
+                        <div style="width:100%">
+                            <h4>Our Locations</h4>
+                            <div id="contact-locations-list" class="contact-locations-list">
+                                <!-- Dynamic location items rendered by JS -->
+                            </div>
                         </div>
                     </div>
                     <div class="glass-panel contact-panel-card">
                         <i class="fa-solid fa-phone-volume" data-icon-id="static-icon-12"></i>
                         <div>
                             <h4>Phone Number</h4>
-                            <p><a href="tel:+919876543210" id="contact-phone">+91 98765 43210</a></p>
+                            <p><a href="tel:+919662500116" id="contact-phone">+91 96625 00116</a></p>
                             <p style="font-size:0.8rem; color:var(--text-muted);"></p>
                         </div>
                     </div>
@@ -364,8 +367,12 @@
                     </div>
                 </div>
 
-                <div class="map-wrapper">
-
+                <div class="map-wrapper" id="map-outer-wrapper">
+                    <!-- Active location label -->
+                    <div class="map-active-label" id="map-active-label">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span id="map-active-label-text">Select a location</span>
+                    </div>
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.630043883011!2d72.4411132!3d22.9208035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e91b2bcdae9b9%3A0xb13c79120ed549c4!2sIndianOil!5e0!3m2!1sen!2sin!4v1715830000000!5m2!1sen!2sin"
                         allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
@@ -670,7 +677,7 @@
     </div>
 
 
-    <script src="js/app.js?v=6.0"></script>
+    <script src="js/app.js?v=6.3"></script>
 </body>
 
 </html>
